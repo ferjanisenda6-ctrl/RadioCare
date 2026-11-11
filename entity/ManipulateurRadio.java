@@ -1,4 +1,4 @@
-package entity;
+package Entity;
 
 public class ManipulateurRadio {
     private String ID_manip;

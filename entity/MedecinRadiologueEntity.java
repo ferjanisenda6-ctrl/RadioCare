@@ -1,4 +1,4 @@
-package entity;
+package Entity;
 
 public class MedecinRadiologueEntity {
     private String ID_Medecin;
