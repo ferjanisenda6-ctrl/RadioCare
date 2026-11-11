@@ -1,4 +1,4 @@
-package entity;
+package Entity.enums;
 
 public enum Libelle {
     IRM_CEREBRALE,

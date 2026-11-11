@@ -1,5 +1,8 @@
 package Entity;
 
+import Entity.enums.StatusEquip;
+import Entity.enums.Type;
+
 public class EquipementImagerieEntity {
     private String ID_Iquipement;
     private Type type;

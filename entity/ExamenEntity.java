@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import Entity.enums.Libelle;
+
 public class ExamenEntity {
 
     private String ID_Examen;
@@ -19,10 +21,9 @@ public class ExamenEntity {
 
         ID_Examen = "";
         CodeActe = "";
-        libelle = "";
     }
 
-    public ExamenEntity(String idExamen, String codeActe, String libelle, int dureeMinutes, double tarifHT) {
+    public ExamenEntity(String idExamen, String codeActe, Libelle libelle, int dureeMinutes, double tarifHT) {
         this.ID_Examen = idExamen;
         this.CodeActe = codeActe;
         this.libelle = libelle;
@@ -36,8 +37,8 @@ public class ExamenEntity {
     public String getCodeActe() { return CodeActe; }
     public void setCodeActe(String codeActe) { this.CodeActe = codeActe; }
 
-    public String getLibelle() { return libelle; }
-    public void setLibelle(String libelle) { this.libelle = libelle; }
+    public Libelle getLibelle() { return libelle; }
+    public void setLibelle(Libelle libelle) { this.libelle = libelle; }
 
     public int getDureeMinutes() { return DureeEstimeeMinutes; }
     public void setDureeMinutes(int dureeMinutes) { this.DureeEstimeeMinutes = dureeMinutes; }
