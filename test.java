@@ -1,5 +1,3 @@
-.project
-.classpath
-.settings/
-bin/
-*.class
+public class test {
+    
+}
