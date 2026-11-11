@@ -9,6 +9,7 @@ public class PatientEntity {
     private String Email;
     private int NumAssurance;
     private double SoldeCompte;
+    private String contreIndication;
     private List<String> historiqueExamensIDs;
 
     public Patient() {
@@ -75,9 +76,19 @@ public class PatientEntity {
     public void setSoldeCompte(double soldeCompte) {
         SoldeCompte = soldeCompte;
     }
-    public ExamenEntity[] getExamens() {
-        return examens;
+    public List<String> getHistoriqueExamensIDs() {
+        return historiqueExamensIDs;
     }
+    public void setHistoriqueExamensIDs(List<String> historiqueExamensIDs) {
+        this.historiqueExamensIDs = historiqueExamensIDs;
+    }
+    public String getContreIndication() {
+        return contreIndication;
+    }
+    public void setContreIndication(String contreIndication) {
+        this.contreIndication = contreIndication;
+    }
+    
 
 
 }
