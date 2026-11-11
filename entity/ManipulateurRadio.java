@@ -1,5 +1,7 @@
 package Entity;
 
+import Entity.enums.Habilitations;
+
 public class ManipulateurRadio {
     private String ID_manip;
     private String CIN,nom,prenom;

@@ -12,7 +12,7 @@ public class EquipementImagerieEntity {
 
 
 
-    public EquipementImagerieEntity(String iD_Iquipement, Type type, String marque, int heurescumulees,Status status) {
+    public EquipementImagerieEntity(String iD_Iquipement, Type type, String marque, int heurescumulees,StatusEquip status) {
         ID_Iquipement = iD_Iquipement;
         this.type = type;
         Marque = marque;

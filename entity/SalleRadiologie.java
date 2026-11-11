@@ -1,4 +1,6 @@
-package entity;
+package Entity;
+
+import Entity.enums.Type;
 
 public class SalleRadiologie {
     private String Id_Salle;

@@ -1,4 +1,4 @@
-package entity;
+package Entity.enums;
 
 public enum Habilitations {
     IRM,
