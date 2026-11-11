@@ -1,5 +1,7 @@
 package Entity;
 
+import Entity.enums.Specialite;
+
 public class MedecinRadiologueEntity {
     private String ID_Medecin;
     private int CIN;
