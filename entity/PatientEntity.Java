@@ -25,3 +25,4 @@ public class PatientEntity {
         return CIN_Matricule;
     }
 }
+
