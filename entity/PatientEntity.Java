@@ -9,9 +9,13 @@ public class PatientEntity {
     private String Email;
     private int NumAssurance;
     private double SoldeCompte;
-    private ExamenEntity[] examens;
+    private List<String> historiqueExamensIDs;
 
-    public PatientEntity(int CIN_Matricule, String nom, String prenom, String dateNaissance, int telephone, String Email, int NumAssurance, double SoldeCompte) {
+    public Patient() {
+        this.historiqueExamensIDs = new ArrayList<>();
+    }
+
+    public PatientEntity(int CIN_Matricule, String nom, String prenom, String dateNaissance, int telephone, String Email, int NumAssurance, double SoldeCompte,String contreIndication,List<String> historiqueExamensIDs) {
         this.CIN_Matricule = CIN_Matricule;
         this.nom = nom;
         this.prenom = prenom;
@@ -20,6 +24,8 @@ public class PatientEntity {
         this.Email = Email;
         this.NumAssurance = NumAssurance;
         this.SoldeCompte = SoldeCompte;
+        this.contreIndication = contreIndication;
+        this.historiqueExamensIDs = historiqueExamensIDs;
     }
     public int getCIN_Matricule() {
         return CIN_Matricule;
@@ -72,6 +78,7 @@ public class PatientEntity {
     public ExamenEntity[] getExamens() {
         return examens;
     }
+
 
 }
 
