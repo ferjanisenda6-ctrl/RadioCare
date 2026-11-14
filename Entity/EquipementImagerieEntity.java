@@ -11,7 +11,7 @@ public class EquipementImagerieEntity {
     private StatutEquip status;
 
 
-
+    // Constructors
     public EquipementImagerieEntity(String iD_Iquipement, Type type, String marque, int heurescumulees,StatutEquip status) {
         ID_Iquipement = iD_Iquipement;
         this.type = type;
@@ -19,6 +19,11 @@ public class EquipementImagerieEntity {
         Heurescumulees = heurescumulees;
         this.status = status;
     }
+    //constructor vide pour la sérialisation JSON
+    public EquipementImagerieEntity() {
+    }
+
+    // Getters and Setters
     public String getID_Iquipement() {
         return ID_Iquipement;
     }
@@ -49,6 +54,8 @@ public class EquipementImagerieEntity {
     public void setStatus(StatutEquip status) {
         this.status = status;
     }
+
+    // Override equals and hashCode methods for proper comparison and hashing
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -56,14 +63,16 @@ public class EquipementImagerieEntity {
         EquipementImagerieEntity other = (EquipementImagerieEntity) obj;
         return this.ID_Iquipement.equals(other.ID_Iquipement);
     }
-    @Override
-    public String toString() {
-        return "EquipementImagerieEntity [ID_Iquipement=" + ID_Iquipement + ", type=" + type + ", Marque=" + Marque
-                + ", Heurescumulees=" + Heurescumulees + ", status=" + status + "]";
-    }
+   
     @Override
     public int hashCode() {
         return ID_Iquipement.hashCode();
+    }
+    // Override toString method for better representation 
+     @Override
+    public String toString() {
+        return "EquipementImagerieEntity [ID_Iquipement=" + ID_Iquipement + ", type=" + type + ", Marque=" + Marque
+                + ", Heurescumulees=" + Heurescumulees + ", status=" + status + "]";
     }
 
 }

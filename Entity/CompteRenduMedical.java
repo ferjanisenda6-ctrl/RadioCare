@@ -10,6 +10,7 @@ public class CompteRenduMedical {
     private LocalDate Date;
     private String RefOrdonnanceTextuelle,TranscriptionDiagnosticTextuel;
     private CodeResultat codeResultat;
+    // Constructor
     public CompteRenduMedical(String iD_CompteRenduMedical, String iD_RDV, LocalDate date,
             String refOrdonnanceTextuelle, String transcriptionDiagnosticTextuel, CodeResultat codeResultat) {
         ID_CompteRenduMedical = iD_CompteRenduMedical;
@@ -19,6 +20,11 @@ public class CompteRenduMedical {
         TranscriptionDiagnosticTextuel = transcriptionDiagnosticTextuel;
         this.codeResultat = codeResultat;
     }
+    // Default constructor
+    public CompteRenduMedical() {
+    }
+
+    // Getters and Setters
     public String getID_CompteRenduMedical() {
         return ID_CompteRenduMedical;
     }
@@ -55,13 +61,14 @@ public class CompteRenduMedical {
     public void setCodeResultat(CodeResultat codeResultat) {
         this.codeResultat = codeResultat;
     }   
-    
+    // Override toString method for better representation
     @Override
     public String toString() {
         return "CompteRenduMedical [ID_CompteRenduMedical=" + ID_CompteRenduMedical + ", ID_RDV=" + ID_RDV + ", Date="
                 + Date + ", RefOrdonnanceTextuelle=" + RefOrdonnanceTextuelle + ", TranscriptionDiagnosticTextuel="
                 + TranscriptionDiagnosticTextuel + ", codeResultat=" + codeResultat + "]";
     }
+    // Override equals and hashCode methods for proper comparison and hashing
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

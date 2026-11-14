@@ -11,6 +11,12 @@ public class RendezVous {
     private String Id_Patient;
     private String ID_Medecin,ID_manip,Id_Salle,ID_Examen;
     private StatutRDV statut;
+
+    //default constructor
+    public RendezVous() {
+    }
+
+    // Constructor
     public RendezVous(String iD_RDV, LocalDate date, LocalTime heureDebut, int dureeMinutes, String id_Patient,
             String iD_Medecin, String iD_manip, String id_Salle, String iD_Examen, StatutRDV statut) {
         ID_RDV = iD_RDV;
@@ -24,6 +30,8 @@ public class RendezVous {
         ID_Examen = iD_Examen;
         this.statut = statut;
     }
+
+    // Getters and Setters
     public String getID_RDV() {
         return ID_RDV;
     }
@@ -84,5 +92,31 @@ public class RendezVous {
     public void setStatut(StatutRDV statut) {
         this.statut = statut;
     }
+
+    // Override toString method for better representation
+    @Override
+    public String toString() {
+        return "RendezVous [ID_RDV=" + ID_RDV + ", Date=" + Date + ", HeureDebut=" + HeureDebut + ", DureeMinutes="
+                + DureeMinutes + ", Id_Patient=" + Id_Patient + ", ID_Medecin=" + ID_Medecin + ", ID_manip=" + ID_manip
+                + ", Id_Salle=" + Id_Salle + ", ID_Examen=" + ID_Examen + ", statut=" + statut + "]";
+    }
+
+    // Override equals and hashCode methods for proper comparison and hashing
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        RendezVous other = (RendezVous) obj;
+        return this.ID_RDV.equals(other.ID_RDV);
+    }
+    @Override
+    public int hashCode() {
+        return ID_RDV.hashCode();
+    }
+    
     
 }

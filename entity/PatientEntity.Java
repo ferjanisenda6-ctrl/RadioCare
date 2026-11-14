@@ -12,10 +12,11 @@ public class PatientEntity {
     private String contreIndication;
     private List<String> historiqueExamensIDs;
 
-    public Patient() {
+    // Default constructor
+    public PatientEntity() {
         this.historiqueExamensIDs = new ArrayList<>();
     }
-
+    // Parameterized constructor
     public PatientEntity(int CIN_Matricule, String nom, String prenom, String dateNaissance, int telephone, String Email, int NumAssurance, double SoldeCompte,String contreIndication,List<String> historiqueExamensIDs) {
         this.CIN_Matricule = CIN_Matricule;
         this.nom = nom;
@@ -28,6 +29,8 @@ public class PatientEntity {
         this.contreIndication = contreIndication;
         this.historiqueExamensIDs = historiqueExamensIDs;
     }
+
+    // Getters and Setters
     public int getCIN_Matricule() {
         return CIN_Matricule;
     }
@@ -90,7 +93,34 @@ public class PatientEntity {
     }
     
 
+    // Override toString method for better representation
+    @Override
+    public String toString() {
+        return "PatientEntity{" +
+                "CIN_Matricule=" + CIN_Matricule +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", dateNaissance='" + dateNaissance + '\'' +
+                ", telephone=" + telephone +
+                ", Email='" + Email + '\'' +
+                ", NumAssurance=" + NumAssurance +
+                ", SoldeCompte=" + SoldeCompte +
+                ", contreIndication='" + contreIndication + '\'' +
+                ", historiqueExamensIDs=" + historiqueExamensIDs +
+                '}';
+    }
 
+    // Override equals and hashCode methods for proper comparison and hashing
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        PatientEntity other = (PatientEntity) obj;
+        return CIN_Matricule == other.CIN_Matricule;
+    }
+    @Override
+    public int hashCode() {
+        return CIN_Matricule;
+    }
 }
-
 

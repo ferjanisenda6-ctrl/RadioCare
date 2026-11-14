@@ -18,6 +18,7 @@ public class FichePatient {
 
     private List<FactureMedicale> factures;
 
+    // default constructor
     public FichePatient() {
     }
 
@@ -88,7 +89,7 @@ public class FichePatient {
     public void setFactures(List<FactureMedicale> factures) {
         this.factures = factures;
     }
-
+    // override toString method for better representation
     @Override
     public String toString() {
         return "FichePatient{" +
@@ -105,7 +106,7 @@ public class FichePatient {
                 ", factures=" + factures +
                 '}';
     }
-
+    // Override equals and hashCode methods for proper comparison and hashing
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;

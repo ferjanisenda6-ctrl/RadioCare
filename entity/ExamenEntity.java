@@ -14,10 +14,8 @@ public class ExamenEntity {
     // constructeur vide (utilisé pour la lecture du JSON)
     public ExamenEntity() {
 
-        ID_Examen = "";
-        CodeActe = "";
     }
-
+    // constructeur avec paramètres
     public ExamenEntity(String idExamen, String codeActe, Libelle libelle, int dureeMinutes, double tarifHT) {
         this.ID_Examen = idExamen;
         this.CodeActe = codeActe;
@@ -25,6 +23,8 @@ public class ExamenEntity {
         this.DureeEstimeeMinutes = dureeMinutes;
         this.TarifHT = tarifHT;
     }
+
+    // Getters and Setters
 
     public String getID_Examen() {
         return ID_Examen;
@@ -52,11 +52,15 @@ public class ExamenEntity {
         if (other == null) return false;
         return this.ID_Examen.equals(other.ID_Examen);
     }
+
+    // Override toString method for better representation
     @Override
     public String toString() {
         return "ExamenEntity [ID_Examen=" + ID_Examen + ", CodeActe=" + CodeActe + ", libelle=" + libelle
                 + ", DureeEstimeeMinutes=" + DureeEstimeeMinutes + ", TarifHT=" + TarifHT + "]";
     }
+
+    // Override equals and hashCode methods for proper comparison and hashing
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;

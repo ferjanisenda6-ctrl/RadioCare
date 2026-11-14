@@ -12,7 +12,8 @@ public class FactureMedicale {
     private double PartAssurance;
     private double PartPatient;
     private StatutPaiement statutPaiement;
-
+    
+    // Constructor 
     public FactureMedicale(int numFacture, String ID_Patient, String ID_RDV, double montantHT,double PartAssurance,StatutPaiement statutPaiement ) {
         this.numFacture = numFacture;
         this.ID_Patient = ID_Patient;
@@ -24,8 +25,11 @@ public class FactureMedicale {
         this.statutPaiement = statutPaiement;
 
     }
+
+    // Default constructor
     public FactureMedicale(){
 
+    // Getters and Setters
     }
     public int getNumFacture() {
         return numFacture;
@@ -76,6 +80,8 @@ public class FactureMedicale {
     public void setStatutPaiement(StatutPaiement statutPaiement) {
         this.statutPaiement = statutPaiement;
     }
+
+    // Override toString method for better representation
     @Override
     public String toString() {
         return "FactureMedicale{" +
@@ -89,6 +95,8 @@ public class FactureMedicale {
                 ", statutPaiement='" + statutPaiement + '\'' +
                 '}';
     }
+
+    // Override equals and hashCode methods for proper comparison and hashing
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -96,6 +104,7 @@ public class FactureMedicale {
         FactureMedicale other = (FactureMedicale) obj;
         return this.numFacture == other.numFacture;
     }
+    
     @Override
     public int hashCode() {
         return Integer.hashCode(numFacture);
