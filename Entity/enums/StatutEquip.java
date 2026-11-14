@@ -1,6 +1,6 @@
 package Entity.enums;
 
-public enum StatusEquip {
+public enum StatutEquip {
     EN_SERVICE,
     EN_PANNE,
     EN_MAINTENANCE
