@@ -6,7 +6,8 @@ import Entity.enums.Habilitations;
 
 public class ManipulateurRadio {
     private String ID_manip;
-    private String CIN,nom,prenom;
+    private int CIN;
+    private String nom,prenom;
     private Habilitations habilitations;
     private double TarifHoraire;
     private boolean StatutDispo;
@@ -14,10 +15,10 @@ public class ManipulateurRadio {
     public ManipulateurRadio(){} //construteur vide : pour JSON
 
     
-    public ManipulateurRadio(String iD_manip, String cIN, String nom, String prenom, Habilitations habilitations,
+    public ManipulateurRadio(String iD_manip, int CIN, String nom, String prenom, Habilitations habilitations,
             double tarifHoraire, boolean statutDispo) {
         ID_manip = iD_manip;
-        CIN = cIN;
+        CIN = CIN;
         this.nom = nom;
         this.prenom = prenom;
         this.habilitations = habilitations;
@@ -33,10 +34,10 @@ public class ManipulateurRadio {
     public void setID_manip(String iD_manip) {
         ID_manip = iD_manip;
     }
-    public String getCIN() {
+    public int getCIN() {
         return CIN;
     }
-    public void setCIN(String cIN) {
+    public void setCIN(int cIN) {
         CIN = cIN;
     }
     public String getNom() {
@@ -89,6 +90,7 @@ public class ManipulateurRadio {
         ManipulateurRadio other = (ManipulateurRadio) obj;
         return Objects.equals(CIN, other.CIN);
     }
+
 
     @Override
     public int hashCode() {
