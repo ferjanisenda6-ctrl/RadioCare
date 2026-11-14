@@ -9,6 +9,12 @@ public class MedecinRadiologueEntity {
     private Specialite specialite;
     private double TarifPourcentageActe;
     private boolean DispoPlanning;
+
+    // Default constructor
+    public MedecinRadiologueEntity() {
+    }   
+
+    // Parameterized constructor
     public MedecinRadiologueEntity(String iD_Medecin, int cIN, String nom, String prenom, Specialite specialite,
             double tarifPourcentageActe, boolean dispoPlanning) {
         ID_Medecin = iD_Medecin;
@@ -19,6 +25,8 @@ public class MedecinRadiologueEntity {
         TarifPourcentageActe = tarifPourcentageActe;
         DispoPlanning = dispoPlanning;
     }
+
+    // Getters and Setters
     public String getID_Medecin() {
         return ID_Medecin;
     }
@@ -61,6 +69,8 @@ public class MedecinRadiologueEntity {
     public void setDispoPlanning(boolean dispoPlanning) {
         DispoPlanning = dispoPlanning;
     }
+
+    
     
 }
 

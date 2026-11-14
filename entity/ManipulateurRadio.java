@@ -12,6 +12,8 @@ public class ManipulateurRadio {
     private boolean StatutDispo;
 
     public ManipulateurRadio(){} //construteur vide : pour JSON
+
+    
     public ManipulateurRadio(String iD_manip, String cIN, String nom, String prenom, Habilitations habilitations,
             double tarifHoraire, boolean statutDispo) {
         ID_manip = iD_manip;
@@ -22,6 +24,9 @@ public class ManipulateurRadio {
         TarifHoraire = tarifHoraire;
         StatutDispo = statutDispo;
     }//constructeur paramétré pour le code
+
+
+    // Getters and Setters
     public String getID_manip() {
         return ID_manip;
     }
@@ -64,6 +69,8 @@ public class ManipulateurRadio {
     public void setStatutDispo(boolean statutDispo) {
         StatutDispo = statutDispo;
     }
+
+    // Override toString method for better representation
     @Override
     public String toString() {
         return "ManipulateurRadio [ID_manip=" + ID_manip + ", CIN=" + CIN + ", nom=" + nom + ", prenom=" + prenom
@@ -74,6 +81,7 @@ public class ManipulateurRadio {
                 + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
     }
   
+    // Override equals and hashCode methods for proper comparison and hashing
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
