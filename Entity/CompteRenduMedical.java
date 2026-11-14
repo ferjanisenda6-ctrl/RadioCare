@@ -56,5 +56,10 @@ public class CompteRenduMedical {
         this.codeResultat = codeResultat;
     }   
     
-
+    @Override
+    public String toString() {
+        return "CompteRenduMedical [ID_CompteRenduMedical=" + ID_CompteRenduMedical + ", ID_RDV=" + ID_RDV + ", Date="
+                + Date + ", RefOrdonnanceTextuelle=" + RefOrdonnanceTextuelle + ", TranscriptionDiagnosticTextuel="
+                + TranscriptionDiagnosticTextuel + ", codeResultat=" + codeResultat + "]";
+    }
 }
