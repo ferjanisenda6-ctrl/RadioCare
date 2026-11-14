@@ -6,25 +6,16 @@ import Entity.enums.Habilitations;
 
 public class ManipulateurRadio {
     private String ID_manip;
-<<<<<<< Updated upstream
     private int CIN;
     private String nom,prenom;
-=======
-    private String nom,prenom;
-    private int CIN;
->>>>>>> Stashed changes
     private Habilitations habilitations;
     private double TarifHoraire;
     private boolean StatutDispo;
 
     public ManipulateurRadio(){} //construteur vide : pour JSON
-<<<<<<< Updated upstream
 
     
     public ManipulateurRadio(String iD_manip, int CIN, String nom, String prenom, Habilitations habilitations,
-=======
-    public ManipulateurRadio(String iD_manip,int cIN, String nom, String prenom, Habilitations habilitations,
->>>>>>> Stashed changes
             double tarifHoraire, boolean statutDispo) {
         ID_manip = iD_manip;
         CIN = CIN;
@@ -94,19 +85,9 @@ public class ManipulateurRadio {
     // Override equals and hashCode methods for proper comparison and hashing
     @Override
     public boolean equals(Object obj) {
-<<<<<<< Updated upstream
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         ManipulateurRadio other = (ManipulateurRadio) obj;
-=======
-        if (this == obj)
-            return true; //meme objet
-        if (obj == null)
-            return false; //objet null
-        if (getClass() != obj.getClass())
-            return false; //autre classe
-        ManipulateurRadio other = (ManipulateurRadio) obj; 
->>>>>>> Stashed changes
         return Objects.equals(CIN, other.CIN);
     }
 
