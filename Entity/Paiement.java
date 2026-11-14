@@ -10,9 +10,10 @@ public class Paiement {
     private ModePaiement modePaiement ;
     private String ReferenceTextuellePreuve;
 
+    // Default constructor
     public Paiement() {
     }
-
+    // Parameterized constructor
     public Paiement(String ID_Paiement, int NumFacture, String DatePaiement, double MontantRecu, ModePaiement modePaiement, String ReferenceTextuellePreuve) {
         this.ID_Paiement = ID_Paiement;
         this.NumFacture = NumFacture;
@@ -59,6 +60,8 @@ public class Paiement {
     public void setReferenceTextuellePreuve(String ReferenceTextuellePreuve) {
         this.ReferenceTextuellePreuve = ReferenceTextuellePreuve;
     }
+
+    // Override toString method for better representation
      @Override
     public String toString() {
         return "Paiement{" +
@@ -69,6 +72,20 @@ public class Paiement {
                 ", modePaiement=" + modePaiement +
                 ", ReferenceTextuellePreuve='" + ReferenceTextuellePreuve + '\'' +
                 '}';
+    }
+
+    // Override equals and hashCode methods for proper comparison and hashing
+    @Override
+    public int hashCode() {
+        return ID_Paiement.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Paiement other = (Paiement) obj;
+        return this.ID_Paiement.equals(other.ID_Paiement);
     }
     
 }
