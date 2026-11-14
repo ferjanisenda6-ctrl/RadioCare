@@ -16,7 +16,7 @@ public class FichePatient {
     private double totalPatient;
     private double resteAPayer;
 
-    private List<FactureMedical> factures;
+    private List<FactureMedicale> factures;
 
     public FichePatient() {
     }
