@@ -62,4 +62,21 @@ public class CompteRenduMedical {
                 + Date + ", RefOrdonnanceTextuelle=" + RefOrdonnanceTextuelle + ", TranscriptionDiagnosticTextuel="
                 + TranscriptionDiagnosticTextuel + ", codeResultat=" + codeResultat + "]";
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        CompteRenduMedical other = (CompteRenduMedical) obj;
+        return this.ID_CompteRenduMedical.equals(other.ID_CompteRenduMedical);
+    }
+    @Override
+    public int hashCode() {
+        return ID_CompteRenduMedical.hashCode();
+    }
+
+
 }

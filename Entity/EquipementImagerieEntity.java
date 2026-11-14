@@ -1,6 +1,6 @@
 package Entity;
 
-import Entity.enums.StatusEquip;
+import Entity.enums.StatutEquip;
 import Entity.enums.Type;
 
 public class EquipementImagerieEntity {
@@ -8,11 +8,11 @@ public class EquipementImagerieEntity {
     private Type type;
     private String Marque;
     private int Heurescumulees;
-    private StatusEquip status;
+    private StatutEquip status;
 
 
 
-    public EquipementImagerieEntity(String iD_Iquipement, Type type, String marque, int heurescumulees,StatusEquip status) {
+    public EquipementImagerieEntity(String iD_Iquipement, Type type, String marque, int heurescumulees,StatutEquip status) {
         ID_Iquipement = iD_Iquipement;
         this.type = type;
         Marque = marque;
@@ -43,11 +43,27 @@ public class EquipementImagerieEntity {
     public void setHeurescumulees(int heurescumulees) {
         Heurescumulees = heurescumulees;
     }
-    public StatusEquip getStatus() {
+    public StatutEquip getStatus() {
         return status;
     }
-    public void setStatus(StatusEquip status) {
+    public void setStatus(StatutEquip status) {
         this.status = status;
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        EquipementImagerieEntity other = (EquipementImagerieEntity) obj;
+        return this.ID_Iquipement.equals(other.ID_Iquipement);
+    }
+    @Override
+    public String toString() {
+        return "EquipementImagerieEntity [ID_Iquipement=" + ID_Iquipement + ", type=" + type + ", Marque=" + Marque
+                + ", Heurescumulees=" + Heurescumulees + ", status=" + status + "]";
+    }
+    @Override
+    public int hashCode() {
+        return ID_Iquipement.hashCode();
     }
 
 }

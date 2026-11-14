@@ -2,7 +2,7 @@ package Entity;
 
 import Entity.enums.StatutPaiement;
 
-public class FactureMadical {
+public class FactureMedicale {
     private int numFacture;
     private String ID_Patient;
     private String ID_RDV;
@@ -13,7 +13,7 @@ public class FactureMadical {
     private double PartPatient;
     private StatutPaiement statutPaiement;
 
-    public FactureMadical(int numFacture, String ID_Patient, String ID_RDV, double montantHT,double PartAssurance,StatutPaiement statutPaiement ) {
+    public FactureMedicale(int numFacture, String ID_Patient, String ID_RDV, double montantHT,double PartAssurance,StatutPaiement statutPaiement ) {
         this.numFacture = numFacture;
         this.ID_Patient = ID_Patient;
         this.ID_RDV = ID_RDV;
@@ -24,7 +24,7 @@ public class FactureMadical {
         this.statutPaiement = statutPaiement;
 
     }
-    public FactureMadical(){
+    public FactureMedicale(){
 
     }
     public int getNumFacture() {
@@ -89,6 +89,18 @@ public class FactureMadical {
                 ", statutPaiement='" + statutPaiement + '\'' +
                 '}';
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        FactureMedicale other = (FactureMedicale) obj;
+        return this.numFacture == other.numFacture;
+    }
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(numFacture);
+    }
     
+
 
 }

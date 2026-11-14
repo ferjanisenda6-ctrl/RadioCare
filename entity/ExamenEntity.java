@@ -26,8 +26,12 @@ public class ExamenEntity {
         this.TarifHT = tarifHT;
     }
 
-    public String getIdExamen() { return ID_Examen; }
-    public void setIdExamen(String idExamen) { this.ID_Examen = idExamen; }
+    public String getID_Examen() {
+        return ID_Examen;
+    }
+    public void setID_Examen(String iD_Examen) {
+        ID_Examen = iD_Examen;
+    }
 
     public String getCodeActe() { return CodeActe; }
     public void setCodeActe(String codeActe) { this.CodeActe = codeActe; }
@@ -43,7 +47,27 @@ public class ExamenEntity {
 
     public String getId() { return ID_Examen; }
 
-    
+    public boolean equals(ExamenEntity other) {
+        if (this == other) return true;
+        if (other == null) return false;
+        return this.ID_Examen.equals(other.ID_Examen);
+    }
+    @Override
+    public String toString() {
+        return "ExamenEntity [ID_Examen=" + ID_Examen + ", CodeActe=" + CodeActe + ", libelle=" + libelle
+                + ", DureeEstimeeMinutes=" + DureeEstimeeMinutes + ", TarifHT=" + TarifHT + "]";
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        ExamenEntity other = (ExamenEntity) obj;
+        return ID_Examen.equals(other.ID_Examen);
+    }
+    @Override
+    public int hashCode() {
+        return ID_Examen.hashCode();
+    }
     
 
 }

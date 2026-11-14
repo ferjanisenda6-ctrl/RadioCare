@@ -89,4 +89,33 @@ public class FichePatient {
         this.factures = factures;
     }
 
+    @Override
+    public String toString() {
+        return "FichePatient{" +
+                "idPatient=" + idPatient +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", nombreRDV=" + nombreRDV +
+                ", nombreFactures=" + nombreFactures +
+                ", totalFacture=" + totalFacture +
+                ", totalAssurance=" + totalAssurance +
+                ", totalPatient=" + totalPatient +
+                ", resteAPayer=" + resteAPayer +
+                ", factures=" + factures +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        FichePatient other = (FichePatient) obj;
+        return idPatient == other.idPatient;
+    }
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(idPatient);
+    }
+
 }
