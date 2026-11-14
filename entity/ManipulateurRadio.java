@@ -82,13 +82,8 @@ public class ManipulateurRadio {
             return false; //objet null
         if (getClass() != obj.getClass())
             return false; //autre classe
-        ManipulateurRadio other = (ManipulateurRadio) obj; //sn 
-        if (CIN == null) {
-            if (other.CIN != null)
-                return false;
-        } else if (!CIN.equals(other.CIN))
-            return false;
-        return true;
+        ManipulateurRadio other = (ManipulateurRadio) obj; 
+        return CIN.equals(other.CIN);
     }
       @Override
     public int hashCode() {
