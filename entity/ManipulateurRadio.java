@@ -76,16 +76,13 @@ public class ManipulateurRadio {
   
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true; //meme objet
-        if (obj == null)
-            return false; //objet null
-        if (getClass() != obj.getClass())
-            return false; //autre classe
-        ManipulateurRadio other = (ManipulateurRadio) obj; 
-        return CIN.equals(other.CIN);
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        ManipulateurRadio other = (ManipulateurRadio) obj;
+        return Objects.equals(CIN, other.CIN);
     }
-      @Override
+
+    @Override
     public int hashCode() {
         return Objects.hash(CIN); 
   
