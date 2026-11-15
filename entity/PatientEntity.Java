@@ -1,4 +1,4 @@
-Package RadioCare.Entity;
+package Entity;
 
 public class PatientEntity {
     private int CIN_Matricule;
