@@ -2,8 +2,8 @@ package DAO;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import  Entity.MedecinRadiologueEntity;
-
+import Entity.MedecinRadiologueEntity;
+import Entity.enums.Specialite;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -21,68 +21,155 @@ import java.util.stream.Collectors;
 
 public class MedecinDao {
 
-    private static final String FILE_PATH = "src/main/resources/medecins.json";// Path to the JSON file
-    private static final Gson gson = new Gson();// Gson instance for JSON serialization/deserialization
+    private final Path fichier = Paths.get("data/medecins.json");//le chemin du fichier json
+    private final Gson gson = GsonUtil.creerGson();//on va creer un json personalisee
 
-    // Method to retrieve all MedecinRadiologueEntity objects from the JSON file
-    public List<MedecinRadiologueEntity> getAllMedecins() {
-        try (Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH), StandardCharsets.UTF_8)) {
-            MedecinRadiologueEntity[] medecinsArray = gson.fromJson(reader, MedecinRadiologueEntity[].class);
-            return medecinsArray != null ? Arrays.asList(medecinsArray) : new ArrayList<>();
-        } catch (IOException | JsonSyntaxException e) {
-            e.printStackTrace();
-            return new ArrayList<>();
+    // Constructeur
+    public MedecinDao() {
+        initialiserFichier();
+    }
+
+
+    // Méthode pour initialiser le fichier JSON
+    private void initialiserFichier() {
+        try {
+            if (fichier.getParent() != null) {
+                Files.createDirectories(fichier.getParent());
+            }
+            if (!Files.exists(fichier)) {
+                Files.writeString(fichier, "[]", StandardCharsets.UTF_8);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Erreur lors de l'initialisation de " + fichier, e);
         }
     }
 
-    // Method to retrieve a MedecinRadiologueEntity object by its ID from the JSON file
-    public Optional<MedecinRadiologueEntity> getMedecinById(int id) {
-        return getAllMedecins().stream()
-                .filter(medecin -> String.valueOf(medecin.getID_Medecin()).equals(String.valueOf(id)))
+    // Méthode pour lire le fichier JSON et retourner une liste de médecins
+    private List<MedecinRadiologueEntity> lireFichier() {
+        try (Reader reader = Files.newBufferedReader(fichier, StandardCharsets.UTF_8)) {
+            MedecinRadiologueEntity[] tableau = gson.fromJson(reader, MedecinRadiologueEntity[].class);
+            if (tableau == null) {
+                return new ArrayList<>();
+            }
+            return new ArrayList<>(Arrays.asList(tableau));
+        } catch (JsonSyntaxException | IOException e) {
+            sauvegarderCopieCorrompue();
+            List<MedecinRadiologueEntity> listeVide = new ArrayList<>();
+            ecrireFichier(listeVide);
+            return listeVide;
+        }
+    }
+
+    // Méthode pour écrire une liste de médecins dans le fichier JSON
+    private void ecrireFichier(List<MedecinRadiologueEntity> medecins) {
+        Path tempFile = Paths.get(fichier.toString() + ".tmp");
+        try {
+            try (Writer writer = Files.newBufferedWriter(tempFile, StandardCharsets.UTF_8)) {
+                gson.toJson(medecins, writer);
+            }
+            Files.move(tempFile, fichier, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            throw new RuntimeException("Erreur lors de l'écriture dans " + fichier, e);
+        }
+    }
+
+    // Méthode pour sauvegarder une copie du fichier corrompu
+    private void sauvegarderCopieCorrompue() {
+        try {
+            if (Files.exists(fichier)) {
+                Path backup = Paths.get(fichier.toString() + ".bak");
+                Files.copy(fichier, backup, StandardCopyOption.REPLACE_EXISTING);
+            }
+        } catch (IOException ex) {
+            System.err.println("Impossible de créer le backup .bak : " + ex.getMessage());
+        }
+    }
+
+
+    // Méthodes CRUD et autres opérations
+
+    public List<MedecinRadiologueEntity> findAll() {
+        return lireFichier();
+    }
+
+    public MedecinRadiologueEntity findById(String id) {
+        if (id == null) {
+            return null;
+        }
+        for (MedecinRadiologueEntity m : lireFichier()) {
+            if (id.equals(m.getID_Medecin())) {
+                return m;
+            }
+        }
+        return null;
+    }
+
+    public boolean existsById(String id) {
+        return findById(id) != null;
+    }
+
+    public void save(MedecinRadiologueEntity medecin) {
+        List<MedecinRadiologueEntity> medecins = lireFichier();
+        for (MedecinRadiologueEntity m : medecins) {
+            if (m.getID_Medecin().equals(medecin.getID_Medecin())) {
+                throw new IllegalArgumentException("Un médecin avec l'ID " + medecin.getID_Medecin() + " existe déjà.");
+            }
+        }
+        medecins.add(medecin);
+        ecrireFichier(medecins);
+    }
+
+    public void update(MedecinRadiologueEntity medecin) {
+        List<MedecinRadiologueEntity> medecins = lireFichier();
+        for (int i = 0; i < medecins.size(); i++) {
+            if (medecins.get(i).getID_Medecin().equals(medecin.getID_Medecin())) {
+                medecins.set(i, medecin);
+                ecrireFichier(medecins);
+                return;
+            }
+        }
+        throw new IllegalArgumentException("Médecin introuvable pour mise à jour : " + medecin.getID_Medecin());
+    }
+
+    public boolean delete(String id) {
+        List<MedecinRadiologueEntity> medecins = lireFichier();
+        boolean supprime = medecins.removeIf(m -> m.getID_Medecin().equals(id));
+        if (supprime) {
+            ecrireFichier(medecins);
+        }
+        return supprime;
+    }
+
+    public long count() {
+        return lireFichier().size();
+    }
+
+
+    // Méthodes de recherche 
+    public Optional<MedecinRadiologueEntity> findByCin(String cin) {
+        if (cin == null) return Optional.empty();
+        return lireFichier().stream()
+                .filter(m -> cin.equals(m.getCIN()))
                 .findFirst();
     }
 
-    // Method to add a new MedecinRadiologueEntity object to the JSON file
-    public void addMedecin(MedecinRadiologueEntity newMedecin) {
-        List<MedecinRadiologueEntity> medecins = getAllMedecins();
-        medecins.add(newMedecin);
-        saveAllMedecins(medecins);
-    }
-
-    // Method to update an existing MedecinRadiologueEntity object in the JSON file
-    public void updateMedecin(MedecinRadiologueEntity updatedMedecin) {
-        List<MedecinRadiologueEntity> medecins = getAllMedecins();
-        for (int i = 0; i < medecins.size(); i++) {
-            if (String.valueOf(medecins.get(i).getID_Medecin()).equals(String.valueOf(updatedMedecin.getID_Medecin()))) {
-                medecins.set(i, updatedMedecin);
-                break;
-            }
-        }
-        saveAllMedecins(medecins);
-    }
-
-    // Method to delete a MedecinRadiologueEntity object from the JSON file
-    public void deleteMedecin(int id) {
-        List<MedecinRadiologueEntity> medecins = getAllMedecins();
-        medecins = medecins.stream()
-                .filter(medecin -> !String.valueOf(medecin.getID_Medecin()).equals(String.valueOf(id)))
+    // Méthode pour trouver les médecins par spécialité
+    public List<MedecinRadiologueEntity> findBySpecialite(Specialite specialite) {
+        if (specialite == null) return new ArrayList<>();
+        return lireFichier().stream()
+                .filter(m -> m.getSpecialite() == specialite)
                 .collect(Collectors.toList());
-        saveAllMedecins(medecins);
     }
 
-    // Private method to save the list of MedecinRadiologueEntity objects back to the JSON file
-    private void saveAllMedecins(List<MedecinRadiologueEntity> medecins) {
-        Path tempFilePath = Paths.get(FILE_PATH + ".tmp");
-        try (Writer writer = Files.newBufferedWriter(tempFilePath, StandardCharsets.UTF_8)) {
-            gson.toJson(medecins, writer);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return;
+    // Méthode pour rechercher les médecins par nom ou prénom
+    public List<MedecinRadiologueEntity> searchByNomOuPrenom(String motCle) {
+        if (motCle == null || motCle.trim().isEmpty()) {
+            return findAll();
         }
-        try {
-            Files.move(tempFilePath, Paths.get(FILE_PATH), StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String filtre = motCle.toLowerCase();
+        return lireFichier().stream()
+                .filter(m -> m.getNom().toLowerCase().contains(filtre) || 
+                             m.getPrenom().toLowerCase().contains(filtre))
+                .collect(Collectors.toList());
     }
 }

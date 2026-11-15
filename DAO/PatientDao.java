@@ -1,8 +1,9 @@
 package DAO;
 
-import Entity.PatientEntity;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+import Entity.PatientEntity;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -44,7 +45,7 @@ public class PatientDao {
             if(tableau==null){
                 return new ArrayList<>();
             }
-            return new ArrayList(Arrays.asList(tableau))
+            return new ArrayList(Arrays.asList(tableau));
         }catch(JsonSyntaxException | IOException e){
             //si le fichier est illisible ou corrompue,on repart directment d'une liste vide
             List<PatientEntity> listeVide=new ArrayList<>();
