@@ -10,7 +10,5 @@ public interface GenericDao<T>{
     void delete(String id);
     boolean existsById(String id);
     int count(); //tehseb kadech aandi mn entites par exemples kadech andi mn patients
-    
 
-    
 }
