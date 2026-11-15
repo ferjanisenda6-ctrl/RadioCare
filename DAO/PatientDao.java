@@ -10,5 +10,6 @@ public class PatientDao {
     private final Path fichier=Paths.get("Data/patient.json");//le chemin du fichier json
     private final Gson gson=GsonUtil.creerGson();//l'instance de Gson pour la sérialisation et désérialisation JSON
     
+    
 
 }
