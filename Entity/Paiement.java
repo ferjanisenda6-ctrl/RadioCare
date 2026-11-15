@@ -1,11 +1,12 @@
 package Entity;
 
 import Entity.enums.ModePaiement;
+import java.time.LocalDate;
 
 public class Paiement {
     private String ID_Paiement;
     private int NumFacture;
-    private String DatePaiement;
+    private LocalDate DatePaiement;
     private double MontantRecu;
     private ModePaiement modePaiement ;
     private String ReferenceTextuellePreuve;
@@ -14,7 +15,7 @@ public class Paiement {
     public Paiement() {
     }
     // Parameterized constructor
-    public Paiement(String ID_Paiement, int NumFacture, String DatePaiement, double MontantRecu, ModePaiement modePaiement, String ReferenceTextuellePreuve) {
+    public Paiement(String ID_Paiement, int NumFacture, LocalDate DatePaiement, double MontantRecu, ModePaiement modePaiement, String ReferenceTextuellePreuve) {
         this.ID_Paiement = ID_Paiement;
         this.NumFacture = NumFacture;
         this.DatePaiement = DatePaiement;
@@ -36,10 +37,10 @@ public class Paiement {
     public void setNumFacture(int NumFacture) {
         this.NumFacture = NumFacture;
     }
-    public String getDatePaiement() {
+    public LocalDate getDatePaiement() {
         return DatePaiement;
     }
-    public void setDatePaiement(String DatePaiement) {
+    public void setDatePaiement(LocalDate DatePaiement) {
         this.DatePaiement = DatePaiement;
     }
     public double getMontantRecu() {
