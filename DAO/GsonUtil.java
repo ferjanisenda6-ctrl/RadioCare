@@ -12,8 +12,10 @@ import java.time.LocalTime;
 
 public class GsonUtil {
     public static Gson creerGson() {
-        return new GsonBuilder()
-                .setPrettyPrinting()
+        return new GsonBuilder()// crée une instance de Gson avec des options de configuration spécifiques
+                .setPrettyPrinting()//active l'option d'impression formatée pour rendre le JSON plus lisible
+                
+                //enregistre un adaptateur personnalisé pour la sérialisation et la désérialisation de LocalDate
                 .registerTypeAdapter(LocalDate.class, new TypeAdapter<LocalDate>() {
                     @Override
                     public void write(JsonWriter out, LocalDate value) throws IOException {
@@ -33,6 +35,7 @@ public class GsonUtil {
                         return LocalDate.parse(in.nextString());
                     }
                 })
+                //enregistre un adaptateur personnalisé pour la sérialisation et la désérialisation de LocalTime
                 .registerTypeAdapter(LocalTime.class, new TypeAdapter<LocalTime>() {
                     @Override
                     public void write(JsonWriter out, LocalTime value) throws IOException {
@@ -53,6 +56,6 @@ public class GsonUtil {
                         }
                     }
                 })
-                .create();
+                .create();//crée et retourne l'instance de Gson configurée avec les adaptateurs personnalisés
     }
 }
