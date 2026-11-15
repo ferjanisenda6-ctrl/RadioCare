@@ -15,10 +15,10 @@ public class ManipulateurRadio {
     public ManipulateurRadio(){} //construteur vide : pour JSON
 
     
-    public ManipulateurRadio(String iD_manip, int CIN, String nom, String prenom, Habilitations habilitations,
+    public ManipulateurRadio(String iD_manip, int cIN, String nom, String prenom, Habilitations habilitations,
             double tarifHoraire, boolean statutDispo) {
         ID_manip = iD_manip;
-        CIN = CIN;
+        CIN = cIN;
         this.nom = nom;
         this.prenom = prenom;
         this.habilitations = habilitations;
