@@ -18,17 +18,18 @@ import java.util.function.Function;
 
 public abstract class JsonDao<T> implements GenericDao<T> {
 
-    private final Path fichier;
-    private final Type typeListe;
+    private final Path fichier;// Chemin vers le fichier JSON
+    private final Type typeListe;// Type de la liste d'entités pour la désérialisation 
     private final Function<T, String> idExtractor;
     private final Gson gson;
-    protected List<T> cache;
+    protected List<T> cache; // Cache en mémoire pour éviter de lire le fichier à chaque opération
+
 
     public JsonDao(String cheminFichier, Type typeListe, Function<T, String> idExtractor) {
         this.fichier = Paths.get(cheminFichier);
         this.typeListe = typeListe;
         this.idExtractor = idExtractor;
-        this.gson = new GsonBuilder()
+        this.gson = new GsonBuilder() 
                 .setPrettyPrinting()
                 .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
                 .registerTypeAdapter(LocalTime.class, new LocalTimeAdapter())
