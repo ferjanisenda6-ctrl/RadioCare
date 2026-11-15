@@ -21,9 +21,10 @@ import java.util.stream.Collectors;
 
 public class MedecinDao {
 
-    private static final String FILE_PATH = "src/main/resources/medecins.json";
-    private static final Gson gson = new Gson();
+    private static final String FILE_PATH = "src/main/resources/medecins.json";// Path to the JSON file
+    private static final Gson gson = new Gson();// Gson instance for JSON serialization/deserialization
 
+    // Method to retrieve all MedecinRadiologueEntity objects from the JSON file
     public List<MedecinRadiologueEntity> getAllMedecins() {
         try (Reader reader = Files.newBufferedReader(Paths.get(FILE_PATH), StandardCharsets.UTF_8)) {
             MedecinRadiologueEntity[] medecinsArray = gson.fromJson(reader, MedecinRadiologueEntity[].class);
@@ -34,18 +35,21 @@ public class MedecinDao {
         }
     }
 
+    // Method to retrieve a MedecinRadiologueEntity object by its ID from the JSON file
     public Optional<MedecinRadiologueEntity> getMedecinById(int id) {
         return getAllMedecins().stream()
                 .filter(medecin -> String.valueOf(medecin.getID_Medecin()).equals(String.valueOf(id)))
                 .findFirst();
     }
 
+    // Method to add a new MedecinRadiologueEntity object to the JSON file
     public void addMedecin(MedecinRadiologueEntity newMedecin) {
         List<MedecinRadiologueEntity> medecins = getAllMedecins();
         medecins.add(newMedecin);
         saveAllMedecins(medecins);
     }
 
+    // Method to update an existing MedecinRadiologueEntity object in the JSON file
     public void updateMedecin(MedecinRadiologueEntity updatedMedecin) {
         List<MedecinRadiologueEntity> medecins = getAllMedecins();
         for (int i = 0; i < medecins.size(); i++) {
@@ -57,6 +61,7 @@ public class MedecinDao {
         saveAllMedecins(medecins);
     }
 
+    // Method to delete a MedecinRadiologueEntity object from the JSON file
     public void deleteMedecin(int id) {
         List<MedecinRadiologueEntity> medecins = getAllMedecins();
         medecins = medecins.stream()
@@ -65,6 +70,7 @@ public class MedecinDao {
         saveAllMedecins(medecins);
     }
 
+    // Private method to save the list of MedecinRadiologueEntity objects back to the JSON file
     private void saveAllMedecins(List<MedecinRadiologueEntity> medecins) {
         Path tempFilePath = Paths.get(FILE_PATH + ".tmp");
         try (Writer writer = Files.newBufferedWriter(tempFilePath, StandardCharsets.UTF_8)) {
@@ -79,3 +85,4 @@ public class MedecinDao {
             e.printStackTrace();
         }
     }
+}
