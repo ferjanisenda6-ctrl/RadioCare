@@ -1,10 +1,8 @@
 package DAO;
-
+import Entity.PatientEntity;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import Entity.PatientEntity;
-
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.io.Reader;
@@ -51,6 +49,7 @@ public class PatientDao {
             List<PatientEntity> listeVide=new ArrayList<>();
             ecrireFichier(listeVide); //il va ecrire []
             return listeVide;
+        }
 
         }
     private void ecrireFichier(List<PatientEntity> patients){
