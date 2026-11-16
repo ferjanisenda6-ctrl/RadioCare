@@ -1,6 +1,6 @@
 package Entity;
 
-public class Entity {
+public class PatientEntity {
     private int CIN_Matricule;
     private String nom;
     private String prenom;
