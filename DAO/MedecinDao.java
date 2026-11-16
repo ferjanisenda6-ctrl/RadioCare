@@ -126,34 +126,4 @@ public class MedecinDao {
 
     public long count() {
         return lireFichier().size();
-    }
-
-
-    // Méthodes de recherche 
-    public Optional<MedecinRadiologueEntity> findByCin(String cin) {
-        if (cin == null) return Optional.empty();
-        return lireFichier().stream()
-                .filter(m -> cin.equals(m.getCIN()))
-                .findFirst();
-    }
-
-    // Méthode pour trouver les médecins par spécialité
-    public List<MedecinRadiologueEntity> findBySpecialite(Specialite specialite) {
-        if (specialite == null) return new ArrayList<>();
-        return lireFichier().stream()
-                .filter(m -> m.getSpecialite() == specialite)
-                .collect(Collectors.toList());
-    }
-
-    // Méthode pour rechercher les médecins par nom ou prénom
-    public List<MedecinRadiologueEntity> searchByNomOuPrenom(String motCle) {
-        if (motCle == null || motCle.trim().isEmpty()) {
-            return findAll();
-        }
-        String filtre = motCle.toLowerCase();
-        return lireFichier().stream()
-                .filter(m -> m.getNom().toLowerCase().contains(filtre) || 
-                             m.getPrenom().toLowerCase().contains(filtre))
-                .collect(Collectors.toList());
-    }
-}
+    }}
