@@ -3,7 +3,7 @@ package DAO;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import Entity.PatientEntity;
+import Entity.Patient;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

@@ -53,7 +53,7 @@ public class MedecinDao {
             }
             return new ArrayList<>(Arrays.asList(tableau));
         } catch (JsonSyntaxException | IOException e) {
-            sauvegarderCopieCorrompue();
+            System.err.println("Erreur lors de la lecture du fichier " + fichier + " : " + e.getMessage());
             List<MedecinRadiologueEntity> listeVide = new ArrayList<>();
             ecrireFichier(listeVide);
             return listeVide;
@@ -62,29 +62,13 @@ public class MedecinDao {
 
     // Méthode pour écrire une liste de médecins dans le fichier JSON
     private void ecrireFichier(List<MedecinRadiologueEntity> medecins) {
-        Path tempFile = Paths.get(fichier.toString() + ".tmp");
         try {
-            try (Writer writer = Files.newBufferedWriter(tempFile, StandardCharsets.UTF_8)) {
-                gson.toJson(medecins, writer);
-            }
-            Files.move(tempFile, fichier, StandardCopyOption.REPLACE_EXISTING);
+            String json = gson.toJson(medecins);
+            Files.writeString(fichier, json, StandardCharsets.UTF_8);
         } catch (IOException e) {
-            throw new RuntimeException("Erreur lors de l'écriture dans " + fichier, e);
+            throw new RuntimeException("Erreur lors de l'écriture dans le fichier " + fichier, e);
         }
     }
-
-    // Méthode pour sauvegarder une copie du fichier corrompu
-    private void sauvegarderCopieCorrompue() {
-        try {
-            if (Files.exists(fichier)) {
-                Path backup = Paths.get(fichier.toString() + ".bak");
-                Files.copy(fichier, backup, StandardCopyOption.REPLACE_EXISTING);
-            }
-        } catch (IOException ex) {
-            System.err.println("Impossible de créer le backup .bak : " + ex.getMessage());
-        }
-    }
-
 
     // Méthodes CRUD et autres opérations
 
