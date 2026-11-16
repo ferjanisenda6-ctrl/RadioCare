@@ -1,6 +1,6 @@
 package Entity;
 
-public class PatientEntity {
+public class Entity {
     private int CIN_Matricule;
     private String nom;
     private String prenom;
@@ -123,4 +123,5 @@ public class PatientEntity {
         return CIN_Matricule;
     }
 }
+
 
