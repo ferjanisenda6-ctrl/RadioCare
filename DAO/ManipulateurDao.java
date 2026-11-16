@@ -14,6 +14,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class ManipulateurDao {
     
@@ -40,7 +41,7 @@ public class ManipulateurDao {
 
     private List<ManipulateurRadio> lireFichier(){
         try (Reader reader =Files.newBufferedReader(fichier, StandardCharsets.UTF_8)){
-            ManipulateurRadio[] tableau = gson.fronJson(reader,ManipulateurRadio[].class);
+            ManipulateurRadio[] tableau = gson.fromJson(reader,ManipulateurRadio[].class);
             if (tableau == null){
                 return new ArrayList<>();
             }
