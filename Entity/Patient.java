@@ -123,7 +123,7 @@ public class Patient {
     }
     @Override
     public int hashCode() {
-        return (int)CIN_Matricule;
+        return Integer.parseInt(CIN_Matricule);
     }
 }
 
