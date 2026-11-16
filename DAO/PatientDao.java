@@ -1,5 +1,5 @@
 package DAO;
-import Entity.PatientEntity;
+import Entity.Patient;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -35,10 +35,10 @@ public class PatientDao {
             throw new RuntimeException("erreur lors de l'initialisation de "+fichier,e) ;
         }
     }
-    private List<PatientEntity> lireFichier(){
+    private List<Patient> lireFichier(){
         try(Reader reader=Files.newBufferedReader(fichier,StandardCharsets.UTF_8)){
             //GSON lit le fichier json sous forme de tableau
-            PatientEntity[] tableau=gson.fromJson(reader,PatientEntity[].class);
+            Patient[] tableau=gson.fromJson(reader,Patient[].class);
             //si le fichier est vide en retourne une liste vide
             if(tableau==null){
                 return new ArrayList<>();
@@ -46,13 +46,13 @@ public class PatientDao {
             return new ArrayList(Arrays.asList(tableau));
         }catch(JsonSyntaxException | IOException e){
             //si le fichier est illisible ou corrompue,on repart directment d'une liste vide
-            List<PatientEntity> listeVide=new ArrayList<>();
+            List<Patient> listeVide=new ArrayList<>();
             ecrireFichier(listeVide); //il va ecrire []
             return listeVide;
         }
 
         }
-    private void ecrireFichier(List<PatientEntity> patients){
+    private void ecrireFichier(List<Patient> patients){
         Path tempFile=Paths.get(fichier.toString()+".tmp"); // cree un autre fichier temporaire dans le mm endroit mais avec une autre extension .tmp
         try{
             try(Writer writer =Files.newBufferedWriter(tempFile, StandardCharsets.UTF_8)){
@@ -65,14 +65,14 @@ public class PatientDao {
  
     }
     //LES METHODES CRUD:
-    public List<PatientEntity>findAll(){
+    public List<Patient>findAll(){
         return lireFichier();
     }
-    public PatientEntity findById(String cin){
+    public Patient findById(String cin){
         if(cin==null)
             return null;
-        for(PatientEntity p:lireFichier()){
-            if(cin.equals(p.getCIN_Matricule))
+        for(Patient p:lireFichier()){
+            if(cin.equals(p.getCIN_Matricule()))
                 return p;
         }
         return null;
@@ -81,9 +81,9 @@ public class PatientDao {
     public boolean existsById(String cin){
         return findById(cin)!=null;
     }
-    public void save(PatientEntity patient){
-        List<PatientEntity> patients=lireFichier();
-        for(PatientEntity p: patients){
+    public void save(Patient patient){
+        List<Patient> patients=lireFichier();
+        for(Patient p: patients){
             if(p.getCIN_Matricule().equals(patient.getCIN_Matricule())){
                 throw new IllegalArgumentException("un patient avec le CIN "+patient.getCIN_Matricule()+" existe déjà");
             }
@@ -91,8 +91,8 @@ public class PatientDao {
         patients.add(patient);//si le patient n'existe pas on l'ajoute dans patients
         ecrireFichier(patients);//on reecrit le fichier patients
     }
-    public void update(PatientEntity patient){
-        List<PatientEntity> patients=lireFichier();
+    public void update(Patient patient){
+        List<Patient> patients=lireFichier();
         for(int i=0;i<patients.size();i++){
             if(patients.get(i).getCIN_Matricule().equals(patient.getCIN_Matricule())){
                 patients.set(i,patient);
@@ -104,7 +104,7 @@ public class PatientDao {
 
     }
     public boolean delete(String cin){
-        List<PatientEntity> patients=lireFichier();
+        List<Patient> patients=lireFichier();
         boolean supprime =patients.removeIf(p->p.getCIN_Matricule().equals(cin));
         if(supprime)
             ecrireFichier(patients);

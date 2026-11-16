@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Patient {
-    private int CIN_Matricule;
+    private String CIN_Matricule;
     private String nom;
     private String prenom;
     private String dateNaissance;
@@ -20,7 +20,7 @@ public class Patient {
         this.historiqueExamensIDs = new ArrayList<>();
     }
     // Parameterized constructor
-    public Patient(int CIN_Matricule, String nom, String prenom, String dateNaissance, int telephone, String Email, int NumAssurance, double SoldeCompte,String contreIndication,List<String> historiqueExamensIDs) {
+    public Patient(String CIN_Matricule, String nom, String prenom, String dateNaissance, int telephone, String Email, int NumAssurance, double SoldeCompte,String contreIndication,List<String> historiqueExamensIDs) {
         this.CIN_Matricule = CIN_Matricule;
         this.nom = nom;
         this.prenom = prenom;
@@ -34,10 +34,10 @@ public class Patient {
     }
 
     // Getters and Setters
-    public int getCIN_Matricule() {
+    public String getCIN_Matricule() {
         return CIN_Matricule;
     }
-    public void setCIN_Matricule(int CIN_Matricule) {
+    public void setCIN_Matricule(String CIN_Matricule) {
         this.CIN_Matricule = CIN_Matricule;
     }
     public String getNom() {
@@ -123,7 +123,7 @@ public class Patient {
     }
     @Override
     public int hashCode() {
-        return CIN_Matricule;
+        return (int)CIN_Matricule;
     }
 }
 
