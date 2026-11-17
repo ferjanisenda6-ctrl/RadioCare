@@ -99,7 +99,7 @@ public class ManipulateurDao {
     public void update(ManipulateurRadio manipulateur){
         List<ManipulateurRadio> listeManip = lireFichier();
         for (int i = 0; i < listeManip.size(); i++){
-            if (listeManip.get(i).getID_manip().equals(manipulateur.getID_manip())){
+            if (listeManip.get(i).getID_manip().equals(manipulateur.getID_manip())){//get(i) pour obtenir le manipulateur à l'index i 
                 listeManip.set(i, manipulateur);
                 ecrireFichier(listeManip);
                 return;
@@ -117,6 +117,7 @@ public class ManipulateurDao {
         }
     }
 
+    // Méthode pour compter le nombre de manipulateurs dans le fichier JSON
     public long count(){
         return lireFichier().size();
     }   

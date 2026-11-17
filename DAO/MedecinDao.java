@@ -2,6 +2,7 @@ package DAO;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+
 import Entity.MedecinRadiologueEntity;
 
 
@@ -20,9 +21,9 @@ import java.util.List;
 
 public class MedecinDao {
 
-    private final Path fichier = Paths.get("data/medecins.json");//le chemin du fichier json
+    private final Path fichier = Paths.get("data/medecin.json");//le chemin du fichier json
     private final Gson gson = GsonUtil.creerGson();//on va creer un json personalisee
-
+    
     // Constructeur
     public MedecinDao() {
         initialiserFichier();
@@ -105,7 +106,7 @@ public class MedecinDao {
     public void update(MedecinRadiologueEntity medecin) {
         List<MedecinRadiologueEntity> medecins = lireFichier();
         for (int i = 0; i < medecins.size(); i++) {
-            if (medecins.get(i).getID_Medecin().equals(medecin.getID_Medecin())) {
+            if (medecins.get(i).getID_Medecin().equals(medecin.getID_Medecin())) {//get(i) pour obtenir le médecin à l'index i
                 medecins.set(i, medecin);
                 ecrireFichier(medecins);
                 return;
@@ -123,6 +124,7 @@ public class MedecinDao {
         return supprime;
     }
 
+    // Méthode pour compter le nombre de médecins dans le fichier JSON
     public long count() {
         return lireFichier().size();
     }}

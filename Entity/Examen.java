@@ -3,7 +3,7 @@ package Entity;
 
 import Entity.enums.Libelle;
 
-public class ExamenEntity {
+public class Examen {
 
     private String ID_Examen;
     private String CodeActe;
@@ -12,11 +12,11 @@ public class ExamenEntity {
     private double TarifHT;
 
     // constructeur vide (utilisé pour la lecture du JSON)
-    public ExamenEntity() {
+    public Examen() {
 
     }
     // constructeur avec paramètres
-    public ExamenEntity(String idExamen, String codeActe, Libelle libelle, int dureeMinutes, double tarifHT) {
+    public Examen(String idExamen, String codeActe, Libelle libelle, int dureeMinutes, double tarifHT) {
         this.ID_Examen = idExamen;
         this.CodeActe = codeActe;
         this.libelle = libelle;
@@ -47,7 +47,7 @@ public class ExamenEntity {
 
     public String getId() { return ID_Examen; }
 
-    public boolean equals(ExamenEntity other) {
+    public boolean equals(Examen other) {
         if (this == other) return true;
         if (other == null) return false;
         return this.ID_Examen.equals(other.ID_Examen);
@@ -65,7 +65,7 @@ public class ExamenEntity {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
-        ExamenEntity other = (ExamenEntity) obj;
+        Examen other = (Examen) obj;
         return ID_Examen.equals(other.ID_Examen);
     }
     @Override

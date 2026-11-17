@@ -16,9 +16,11 @@ import java.util.Arrays;
 import java.util.List;
 
 
+
 public class PatientDao {
     private final Path fichier=Paths.get("Data/patient.json");//le chemin du fichier json
     private final Gson gson=GsonUtil.creerGson(); //on va creer un json personalisee
+    
     public PatientDao(){
         initialiserFichier();
     }
@@ -65,6 +67,7 @@ public class PatientDao {
  
     }
     //LES METHODES CRUD:
+    
     public List<Patient>findAll(){
         return lireFichier();
     }
@@ -94,7 +97,7 @@ public class PatientDao {
     public void update(Patient patient){
         List<Patient> patients=lireFichier();
         for(int i=0;i<patients.size();i++){
-            if(patients.get(i).getCIN_Matricule().equals(patient.getCIN_Matricule())){
+            if(patients.get(i).getCIN_Matricule().equals(patient.getCIN_Matricule())){//get(i) pour obtenir le patient à l'index i 
                 patients.set(i,patient);
                 ecrireFichier(patients);
                 return;
@@ -112,9 +115,11 @@ public class PatientDao {
 
 
     }
+
+    // Méthode pour compter le nombre de patients dans le fichier JSON
     public long count(){
         return lireFichier().size();
     }
-    
+
     
 }
