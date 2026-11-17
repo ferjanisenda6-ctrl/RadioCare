@@ -21,6 +21,7 @@ public class ManipulateurDao {
     private final Path fichier = Paths.get("data/manipulateur.json");//le chemin du fichier json
     private final Gson gson = GsonUtil.creerGson();//on va creer un json personalisee   
 
+    // Constructeur 
     public ManipulateurDao() {
         initialiserFichier();
     }
