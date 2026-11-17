@@ -116,7 +116,5 @@ public class PatientDao {
         return lireFichier().size();
     }
     
-    //sindaaaa
-    //eya
-
+    
 }
