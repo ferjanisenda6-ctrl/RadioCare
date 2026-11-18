@@ -108,10 +108,17 @@ public class ExamenDao {
     }
 
     // Méthode pour supprimer un examen par son ID depuis le fichier JSON
-    public boolean delete(String id) {
-        List<Examen> examens = lireFichier();
-        boolean supprime = examens.removeIf(m -> m.getID_Examen().equals(id));
-        if (supprime){
+    public boolean delete(String id){
+        List<Examen> examens=lireFichier();
+        boolean supprime =false;
+        for(int i=0;i<examens.size();i++){
+            if(examens.get(i).getID_Examen().equals(id)){
+                examens.remove(i);
+                supprime=true;
+                break;
+            }
+        }
+        if(supprime){
             ecrireFichier(examens);
         }
         return supprime;

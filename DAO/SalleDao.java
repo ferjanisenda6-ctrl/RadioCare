@@ -3,6 +3,7 @@ package DAO;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
+
 import Entity.SalleRadiologie;
 
 import java.io.IOException;
@@ -109,14 +110,20 @@ public class SalleDao {
     }
 
 
-    public void delete(String id){
-        List<SalleRadiologie> listeSalleRadiologies = lireFichier();
-        boolean supprime = listeSalleRadiologies.removeIf(m -> m.getId_Salle().equals(id));
-        if (supprime){
-            ecrireFichier(listeSalleRadiologies);
-        } else {
-            throw new RuntimeException("La salle radiologie avec l'ID " + id + " n'existe pas.");
+    public boolean delete(String id){
+        List<SalleRadiologie> salleRadiologies=lireFichier();
+        boolean supprime =false;
+        for(int i=0;i<salleRadiologies.size();i++){
+            if(salleRadiologies.get(i).getId_Salle().equals(id)){
+                salleRadiologies.remove(i);
+                supprime=true;
+                break;
+            }
         }
+        if(supprime){
+            ecrireFichier(salleRadiologies);
+        }
+        return supprime;
     }
 
     // Méthode pour compter le nombre de salles radiologies dans le fichier JSON

@@ -49,7 +49,7 @@ public class PatientDao {
             if(tableau==null){
                 return new ArrayList<>();
             }
-            return new ArrayList(Arrays.asList(tableau));
+            return new ArrayList<>(Arrays.asList(tableau));
         }catch(JsonSyntaxException | IOException e){
             //si le fichier est illisible ou corrompue,on repart directment d'une liste vide
             List<Patient> listeVide=new ArrayList<>();
@@ -110,14 +110,20 @@ public class PatientDao {
         throw new IllegalArgumentException("¨Patient introuvable pour mise a jour : "+patient.getCIN_Matricule());
 
     }
-    public boolean delete(String cin){
+    public boolean delete(String id){
         List<Patient> patients=lireFichier();
-        boolean supprime =patients.removeIf(p->p.getCIN_Matricule().equals(cin));
-        if(supprime)
+        boolean supprime =false;
+        for(int i=0;i<patients.size();i++){
+            if(patients.get(i).getCIN_Matricule().equals(id)){
+                patients.remove(i);
+                supprime=true;
+                break;
+            }
+        }
+        if(supprime){
             ecrireFichier(patients);
+        }
         return supprime;
-
-
     }
 
     // Méthode pour compter le nombre de patients dans le fichier JSON

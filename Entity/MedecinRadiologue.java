@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import Entity.enums.Specialite;
 
-public class MedecinRadiologueEntity {
+public class MedecinRadiologue {
     private String ID_Medecin;
     private int CIN;
     private String nom,prenom;
@@ -13,11 +13,11 @@ public class MedecinRadiologueEntity {
     private boolean DispoPlanning;
 
     // Default constructor
-    public MedecinRadiologueEntity() {
+    public MedecinRadiologue() {
     }   
 
     // Parameterized constructor
-    public MedecinRadiologueEntity(String iD_Medecin, int cIN, String nom, String prenom, Specialite specialite,
+    public MedecinRadiologue(String iD_Medecin, int cIN, String nom, String prenom, Specialite specialite,
             double tarifPourcentageActe, boolean dispoPlanning) {
         ID_Medecin = iD_Medecin;
         CIN = cIN;
@@ -86,7 +86,7 @@ public class MedecinRadiologueEntity {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        MedecinRadiologueEntity other = (MedecinRadiologueEntity) obj;
+        MedecinRadiologue other = (MedecinRadiologue) obj;
         return Objects.equals(CIN, other.CIN);
     
     }

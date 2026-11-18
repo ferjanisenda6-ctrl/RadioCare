@@ -4,6 +4,7 @@ package DAO;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
+
 import Entity.ManipulateurRadio;
 
 
@@ -113,14 +114,20 @@ public class ManipulateurDao {
         }
         throw new RuntimeException("Manipulateur avec l'ID " + manipulateur.getID_manip() + " n'existe pas.");
     }
-    public void delete(String id){
-        List<ManipulateurRadio> listeManip = lireFichier();
-        boolean supprime = listeManip.removeIf(m -> m.getID_manip().equals(id));
-        if (supprime){
-            ecrireFichier(listeManip);
-        } else {
-            throw new RuntimeException("Manipulateur avec l'ID " + id + " n'existe pas.");
+    public boolean delete(String id){
+        List<ManipulateurRadio> manipulateurRadios=lireFichier();
+        boolean supprime =false;
+        for(int i=0;i<manipulateurRadios.size();i++){
+            if(manipulateurRadios.get(i).getID_manip().equals(id)){
+                manipulateurRadios.remove(i);
+                supprime=true;
+                break;
+            }
         }
+        if(supprime){
+            ecrireFichier(manipulateurRadios);
+        }
+        return supprime;
     }
 
     // Méthode pour compter le nombre de manipulateurs dans le fichier JSON

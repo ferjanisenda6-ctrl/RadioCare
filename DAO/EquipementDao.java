@@ -1,7 +1,6 @@
 package DAO;
+
 import Entity.EquipementImagerie;
-
-
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -96,19 +95,23 @@ public class EquipementDao {
             }
         }
         throw new IllegalArgumentException("¨Equipement introuvable: "+equipement.getID_Equipement());
-
     }
+
+
     public boolean delete(String id){
-        List<EquipementImagerie> equipements=lireFichier();
-        boolean supprime =equipements.removeIf(E->E.getID_Equipement().equals(id));
-        if(supprime)
-            ecrireFichier(equipements);
+        List<EquipementImagerie> equipementImageries=lireFichier();
+        boolean supprime =false;
+        for(int i=0;i<equipementImageries.size();i++){
+            if(equipementImageries.get(i).getID_Equipement().equals(id)){
+                equipementImageries.remove(i);
+                supprime=true;
+                break;
+            }
+        }
+        if(supprime){
+            ecrireFichier(equipementImageries);
+        }
         return supprime;
-
-
-    }
-    public long count(){
-        return lireFichier().size();
     }
 
 
