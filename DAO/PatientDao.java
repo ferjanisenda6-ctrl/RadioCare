@@ -27,9 +27,9 @@ public class PatientDao {
     public void initialiserFichier(){
         try{
             if(fichier.getParent()!=null){ //on verifie l'existence du fichier parent du fichier json (data dans notre cas)
-                Files.createDirectories(fichier.getParent()); 
+                Files.createDirectories(fichier.getParent()); //s'il nexiste pas on le cree
             }
-            if(!Files.exists(fichier)){ //on verifie si le fichier.json est absent on le cree
+            if(!Files.exists(fichier)){ //on verifie si le fichier.json n'existe pas on le cree
                 Files.writeString(fichier, "[]", StandardCharsets.UTF_8); //on l'inisialise [] c-a-d il n'ya aucun patient dans le fichier                                
             }
 
