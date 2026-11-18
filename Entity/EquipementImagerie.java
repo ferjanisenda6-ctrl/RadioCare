@@ -3,8 +3,8 @@ package Entity;
 import Entity.enums.StatutEquip;
 import Entity.enums.Type;
 
-public class EquipementImagerieEntity {
-    private String ID_Iquipement;
+public class EquipementImagerie {
+    private String ID_Equipement;
     private Type type;
     private String Marque;
     private int Heurescumulees;
@@ -12,23 +12,23 @@ public class EquipementImagerieEntity {
 
 
     // Constructors
-    public EquipementImagerieEntity(String iD_Iquipement, Type type, String marque, int heurescumulees,StatutEquip status) {
-        ID_Iquipement = iD_Iquipement;
+    public EquipementImagerie(String iD_Equipement, Type type, String marque, int heurescumulees,StatutEquip status) {
+        ID_Equipement = iD_Equipement;
         this.type = type;
         Marque = marque;
         Heurescumulees = heurescumulees;
         this.status = status;
     }
     //constructor vide pour la sérialisation JSON
-    public EquipementImagerieEntity() {
+    public EquipementImagerie() {
     }
 
     // Getters and Setters
-    public String getID_Iquipement() {
-        return ID_Iquipement;
+    public String getID_Equipement() {
+        return ID_Equipement;
     }
-    public void setID_Iquipement(String iD_Iquipement) {
-        ID_Iquipement = iD_Iquipement;
+    public void setID_Iquipement(String iD_Equipement) {
+        ID_Equipement = iD_Equipement;
     }
     public Type getType() {
         return type;
@@ -60,18 +60,18 @@ public class EquipementImagerieEntity {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
-        EquipementImagerieEntity other = (EquipementImagerieEntity) obj;
-        return this.ID_Iquipement.equals(other.ID_Iquipement);
+        EquipementImagerie other = (EquipementImagerie) obj;
+        return this.ID_Equipement.equals(other.ID_Equipement);
     }
    
     @Override
     public int hashCode() {
-        return ID_Iquipement.hashCode();
+        return ID_Equipement.hashCode();
     }
     // Override toString method for better representation 
      @Override
     public String toString() {
-        return "EquipementImagerieEntity [ID_Iquipement=" + ID_Iquipement + ", type=" + type + ", Marque=" + Marque
+        return "EquipementImagerieEntity [ID_Iquipement=" + ID_Equipement + ", type=" + type + ", Marque=" + Marque
                 + ", Heurescumulees=" + Heurescumulees + ", status=" + status + "]";
     }
 

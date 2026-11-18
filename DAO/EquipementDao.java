@@ -1,5 +1,6 @@
 package DAO;
-import Entity.EquipementImagerieEntity;
+import Entity.EquipementImagerie;
+
 
 
 import com.google.gson.Gson;
@@ -34,22 +35,22 @@ public class EquipementDao {
             throw new RuntimeException("erreur lors de l'initialisation de "+Fichier,e);
         }
     }
-    private List<EquipementImagerieEntity> lireFichier(){
+    private List<EquipementImagerie> lireFichier(){
         try(Reader reader=Files.newBufferedReader(Fichier,StandardCharsets.UTF_8)){
-            EquipementImagerieEntity[] tableau =gson.fromJson(reader,EquipementImagerieEntity[].class);
+            EquipementImagerie[] tableau =gson.fromJson(reader,EquipementImagerie[].class);
             if(tableau==null){
                 return new ArrayList<>();
 
             }
             return new ArrayList<>(Arrays.asList(tableau));
         }catch(JsonSyntaxException | IOException e){
-            List<EquipementImagerieEntity> listeVide=new ArrayList<>();
+            List<EquipementImagerie> listeVide=new ArrayList<>();
             ecrireFichier(listeVide);
             return listeVide;
         }
 
     }
-    private void ecrireFichier(List<EquipementImagerieEntity> equipements){
+    private void ecrireFichier(List<EquipementImagerie> equipements){
         try(Writer writer=Files.newBufferedWriter(Fichier, StandardCharsets.UTF_8)){
             gson.toJson(equipements,writer);
    
@@ -59,13 +60,13 @@ public class EquipementDao {
     }
 
      //LES METHODES CRUD:
-    public List<EquipementImagerieEntity>findAll(){
+    public List<EquipementImagerie>findAll(){
         return lireFichier();
     }
-    public EquipementImagerieEntity findById(String id){
+    public EquipementImagerie findById(String id){
         if(id==null)
             return null;
-        for(EquipementImagerieEntity E:lireFichier()){
+        for(EquipementImagerie E:lireFichier()){
             if(id.equals(E.getID_Equipement()))
                 return E;
         }
@@ -75,9 +76,9 @@ public class EquipementDao {
     public boolean existsById(String id){
         return findById(id)!=null;
     }
-    public void save(EquipementImagerieEntity equipement){
-        List<EquipementImagerieEntity> equipements=lireFichier();
-        for(EquipementImagerieEntity E:equipements){
+    public void save(EquipementImagerie equipement){
+        List<EquipementImagerie> equipements=lireFichier();
+        for(EquipementImagerie E:equipements){
             if(E.getID_Equipement().equals(equipement.getID_Equipement())){
                 throw new IllegalArgumentException("l'equipement ayant l'id  "+equipement.getID_Equipement()+" existe déjà");
             }
@@ -85,8 +86,8 @@ public class EquipementDao {
         equipements.add(equipement);
         ecrireFichier(equipements);
     }
-    public void update(EquipementImagerieEntity equipement){
-        List<EquipementImagerieEntity> equipements=lireFichier();
+    public void update(EquipementImagerie equipement){
+        List<EquipementImagerie> equipements=lireFichier();
         for(int i=0;i<equipements.size();i++){
             if(equipements.get(i).getID_Equipement().equals(equipement.getID_Equipement())){
                 equipements.set(i,equipement);
@@ -98,7 +99,7 @@ public class EquipementDao {
 
     }
     public boolean delete(String id){
-        List<EquipementImagerieEntity> equipements=lireFichier();
+        List<EquipementImagerie> equipements=lireFichier();
         boolean supprime =equipements.removeIf(E->E.getID_Equipement().equals(id));
         if(supprime)
             ecrireFichier(equipements);

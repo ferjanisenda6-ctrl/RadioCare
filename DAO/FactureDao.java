@@ -1,16 +1,20 @@
 package DAO;
+
 import Entity.FactureMedicale;
-import Entity.RendezVous;
+
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+
+import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -86,7 +90,7 @@ public class FactureDao {
     public void update(FactureMedicale facture){
         List<FactureMedicale> factures=lireFichier();
         for(int i=0;i<factures.size();i++){
-            if(factures.get(i).getNumFacture()==facture.getNumFacture())){
+            if(factures.get(i).getNumFacture()==facture.getNumFacture()){
                 factures.set(i,facture);
                 ecrireFichier(factures);
                 return;

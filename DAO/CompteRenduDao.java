@@ -83,7 +83,7 @@ public class CompteRenduDao {
                 throw new IllegalArgumentException("le rendez vous ayant l'id  "+CompteRendu.getID_CompteRenduMedical()+"existe deja");
         }
         ComptesRendu.add(CompteRendu);
-        ecrireFichier(ComptesRendu);
+        ecrireFichier(ComptesRendu);}
     }
     public void update(CompteRenduMedical cpteRendu){
         List<CompteRenduMedical> compteRenduMedicals=lireFichier();

@@ -1,5 +1,5 @@
 package DAO;
-import Entity.EquipementImagerieEntity;
+
 import Entity.RendezVous;
 
 import com.google.gson.Gson;
