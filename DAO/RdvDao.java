@@ -49,7 +49,8 @@ public class RdvDao {
             return listeVide;
         }
 
-         }
+    }
+        
     private void ecrireFichier(List<RendezVous> Rdvs){
         try(Writer writer=Files.newBufferedWriter(fichier, StandardCharsets.UTF_8)){
             gson.toJson(Rdvs,writer);
@@ -63,6 +64,7 @@ public class RdvDao {
     public List<RendezVous>findAll(){
         return lireFichier();
     }
+
     public RendezVous findById(String id){
         if(id==null)
             return null;
@@ -73,9 +75,11 @@ public class RdvDao {
         return null;
 
     }
+
     public boolean existsById(String id){
         return findById(id)!=null;
     }
+
     public void save(RendezVous Rdv){
         List<RendezVous> Rdvs=lireFichier();
         for(RendezVous RDV:Rdvs){
@@ -86,6 +90,7 @@ public class RdvDao {
         Rdvs.add(Rdv);
         ecrireFichier(Rdvs);
     }
+
     public void update(RendezVous Rdv){
         List<RendezVous> rdvs=lireFichier();
         for(int i=0;i<rdvs.size();i++){
@@ -96,8 +101,8 @@ public class RdvDao {
             }
         }
         throw new IllegalArgumentException("¨Rendez vous introuvable: "+Rdv.getID_RDV());
-
     }
+
     public boolean delete(String id){
         List<RendezVous> rdvs=lireFichier();
         boolean supprime =false;
