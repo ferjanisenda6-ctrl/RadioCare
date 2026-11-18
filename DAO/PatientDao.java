@@ -1,16 +1,20 @@
 package DAO;
+
 import Entity.Patient;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.io.Reader;
 import java.io.Writer;
+
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
