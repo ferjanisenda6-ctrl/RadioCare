@@ -3,7 +3,6 @@ package DAO;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
-
 import Entity.SalleRadiologie;
 
 import java.io.IOException;
