@@ -81,6 +81,7 @@ public class RdvDao {
         for(RendezVous RDV:Rdvs){
             if(RDV.getID_RDV().equals(Rdv.getID_RDV())){
                 throw new IllegalArgumentException("le rendez vous ayant l'id  "+Rdv.getID_RDV()+"existe deja");
+            }
         }
         Rdvs.add(Rdv);
         ecrireFichier(Rdvs);
