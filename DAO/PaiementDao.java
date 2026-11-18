@@ -1,6 +1,5 @@
 package DAO;
 import Entity.Paiement;
-import Entity.RendezVous;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;

@@ -3,14 +3,18 @@ package DAO;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+
 import Entity.ManipulateurRadio;
+
 
 import java.io.IOException;
 import java.io.Reader;
+import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -55,12 +59,12 @@ public class ManipulateurDao {
         }
     }
 
-    private void ecrireFichier(List<ManipulateurRadio> liste){
-        try {
-            String json = gson.toJson(liste);
-            Files.writeString(fichier, json, StandardCharsets.UTF_8);
-        } catch (IOException e) {
-            throw new RuntimeException("Erreur lors de l'écriture dans le fichier " + fichier, e);
+    private void ecrireFichier(List<ManipulateurRadio> manipulateurRadios){
+        try(Writer writer=Files.newBufferedWriter(fichier, StandardCharsets.UTF_8)){
+            gson.toJson(manipulateurRadios,writer);
+   
+        }catch(IOException e){
+            throw new RuntimeException("Erreur lors de l'ecriture dans "+fichier,e);
         }
     }
 

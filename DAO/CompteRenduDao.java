@@ -1,6 +1,6 @@
 package DAO;
 import Entity.CompteRenduMedical;
-import Entity.RendezVous;
+
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
