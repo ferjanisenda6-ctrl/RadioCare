@@ -61,7 +61,7 @@ public class FactureDao {
         }
     }
     //LES METHODES CRUD:
-    public List<FactureMedicale>findAll(){
+    public List<FactureMedicale> findAll(){
         return lireFichier();
     }
     public FactureMedicale findById(String id){

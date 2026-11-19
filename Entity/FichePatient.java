@@ -3,11 +3,13 @@ package Entity;
 import java.util.List;
 public class FichePatient {
 
-    private int idPatient;
+    private String CIN ;
     private String nom;
     private String prenom;
     private String telephone;
 
+
+    
     private int nombreRDV;
     private int nombreFactures;
 
@@ -17,17 +19,37 @@ public class FichePatient {
     private double resteAPayer;
 
     private List<FactureMedicale> factures;
+    private List<Examen> historiqueExamensIDs;
+
+    //constructeur 
+    public FichePatient(String CIN, String nom, String prenom, String telephone, int nombreRDV, int nombreFactures,
+            double totalFacture, double totalAssurance, double totalPatient, double resteAPayer,
+            List<FactureMedicale> factures, List<Examen> historiqueExamensIDs) {
+        this.CIN = CIN;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.telephone = telephone;
+        this.nombreRDV = nombreRDV;
+        this.nombreFactures = nombreFactures;
+        this.totalFacture = totalFacture;
+        this.totalAssurance = totalAssurance;
+        this.totalPatient = totalPatient;
+        this.resteAPayer = resteAPayer;
+        this.factures = factures;
+        this.historiqueExamensIDs = historiqueExamensIDs;
+    }
 
     // default constructor
     public FichePatient() {
     }
+    
 
     // Getters & Setters
-    public int getIdPatient() {
-        return idPatient;
+    public String getCIN() {
+        return CIN;
     }
-    public void setIdPatient(int idPatient) {
-        this.idPatient = idPatient;
+    public void setCIN(String idPatient) {
+        this.CIN = idPatient;
     }
     public String getNom() {
         return nom;
@@ -89,11 +111,18 @@ public class FichePatient {
     public void setFactures(List<FactureMedicale> factures) {
         this.factures = factures;
     }
+    public List<Examen> getHistoriqueExamensIDs() {
+        return historiqueExamensIDs;
+    }
+    public void setHistoriqueExamensIDs(List<Examen> historiqueExamensIDs) {
+        this.historiqueExamensIDs = historiqueExamensIDs;
+    }
+
     // override toString method for better representation
     @Override
     public String toString() {
         return "FichePatient{" +
-                "idPatient=" + idPatient +
+                "CIN=" + CIN +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", telephone='" + telephone + '\'' +
@@ -104,6 +133,7 @@ public class FichePatient {
                 ", totalPatient=" + totalPatient +
                 ", resteAPayer=" + resteAPayer +
                 ", factures=" + factures +
+                ", historiqueExamensIDs=" + historiqueExamensIDs +
                 '}';
     }
     // Override equals and hashCode methods for proper comparison and hashing
@@ -112,11 +142,11 @@ public class FichePatient {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         FichePatient other = (FichePatient) obj;
-        return idPatient == other.idPatient;
+        return CIN == other.CIN;
     }
     @Override
     public int hashCode() {
-        return Integer.hashCode(idPatient);
+        return CIN.hashCode();
     }
 
 }

@@ -8,19 +8,19 @@ public class Patient {
     private String nom;
     private String prenom;
     private String dateNaissance;
-    private int telephone ;
+    private String telephone ;
     private String Email;
     private int NumAssurance;
     private double SoldeCompte;
     private String contreIndication;
-    private List<String> historiqueExamensIDs;
+    private List<Examen> historiqueExamensIDs;
 
     // Default constructor
     public Patient() {
         this.historiqueExamensIDs = new ArrayList<>();
     }
     // Parameterized constructor
-    public Patient(String CIN_Matricule, String nom, String prenom, String dateNaissance, int telephone, String Email, int NumAssurance, double SoldeCompte,String contreIndication,List<String> historiqueExamensIDs) {
+    public Patient(String CIN_Matricule, String nom, String prenom, String dateNaissance, String telephone, String Email, int NumAssurance, double SoldeCompte,String contreIndication,List<Examen> historiqueExamensIDs) {
         this.CIN_Matricule = CIN_Matricule;
         this.nom = nom;
         this.prenom = prenom;
@@ -58,10 +58,10 @@ public class Patient {
     public void setDateNaissance(String dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
-    public int getTelephone() {
+    public String getTelephone() {
         return telephone;
     }
-    public void setTelephone(int telephone) {
+    public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
     public String getEmail() {
@@ -82,10 +82,10 @@ public class Patient {
     public void setSoldeCompte(double soldeCompte) {
         SoldeCompte = soldeCompte;
     }
-    public List<String> getHistoriqueExamensIDs() {
+    public List<Examen> getHistoriqueExamensIDs() {
         return historiqueExamensIDs;
     }
-    public void setHistoriqueExamensIDs(List<String> historiqueExamensIDs) {
+    public void setHistoriqueExamensIDs(List<Examen> historiqueExamensIDs) {
         this.historiqueExamensIDs = historiqueExamensIDs;
     }
     public String getContreIndication() {
