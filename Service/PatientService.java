@@ -1,5 +1,5 @@
 package Service;
-
+import  Service.ExceptionsServices.ValidationException;
 import DAO.PatientDao;
 import DAO.RdvDao;
 import Entity.Examen;
