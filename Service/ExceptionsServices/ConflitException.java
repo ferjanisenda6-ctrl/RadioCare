@@ -1,4 +1,4 @@
-package Service;
+package Service.ExceptionsServices;
 
 public class ConflitException extends Exception{
     public ConflitException(){

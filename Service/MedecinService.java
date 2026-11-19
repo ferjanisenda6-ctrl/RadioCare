@@ -37,7 +37,8 @@ public class MedecinService implements CRUDService<MedecinRadiologue>{
     }
 
     @Override
-    public void modifier(MedecinRadiologue medecin) throws EntiteIntrouvableException{
+    public void modifier(MedecinRadiologue medecin) throws EntiteIntrouvableException,ValidationException{
+        
         validerMedecin(medecin);// on va verifier la validité du medecin qui est en parametre
 
         MedecinRadiologue medecinRadiologue = medecinDao.findById(medecin.getID_Medecin());
@@ -57,7 +58,7 @@ public class MedecinService implements CRUDService<MedecinRadiologue>{
     }
 
     @Override
-    public void supprimer(String id) {
+    public void supprimer(String id) throws ValidationException,EntiteIntrouvableException {
         List<RendezVous> listeRdv= rdvDao.findAll();//donne la liste des rendez vous
         boolean RDVactif=false;
 
@@ -86,7 +87,7 @@ public class MedecinService implements CRUDService<MedecinRadiologue>{
     }
 
     @Override
-    public MedecinRadiologue rechercher(String id) {
+    public MedecinRadiologue rechercher(String id) throws EntiteIntrouvableException{
         MedecinRadiologue medecin = medecinDao.findById(id);
         if (medecin == null) {
             throw new EntiteIntrouvableException("Médecin introuvable : " + id);

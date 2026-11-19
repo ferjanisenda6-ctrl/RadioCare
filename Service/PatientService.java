@@ -8,6 +8,9 @@ import Entity.FichePatient;
 import Entity.Paiement;
 import Entity.Patient;
 import Entity.RendezVous;
+import Service.ExceptionsServices.ConflitException;
+import Service.ExceptionsServices.EntiteIntrouvableException;
+import Service.ExceptionsServices.ValidationException;
 import DAO.FactureDao;
 import DAO.PaiementDao;
 

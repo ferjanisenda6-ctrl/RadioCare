@@ -1,4 +1,4 @@
-package Service;
+package Service.ExceptionsServices;
 
 public class EntiteIntrouvableException extends Exception{
     public EntiteIntrouvableException(){
