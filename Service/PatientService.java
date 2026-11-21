@@ -26,7 +26,7 @@ import java.util.List;
 
 public class PatientService implements CRUDService<Patient> {
     private PatientDao patientDao=new PatientDao();
-    private RdvDao RdvDao=new RdvDao();
+    private RdvDao rdvDao=new RdvDao();
     private FactureDao factureDao=new FactureDao();
     private PaiementDao paiementDao=new PaiementDao();
     private ExamenDao examenDao=new ExamenDao();
@@ -78,9 +78,10 @@ public class PatientService implements CRUDService<Patient> {
             throw new EntiteIntrouvableException("le patient est introuvable");
         
         }
+
         //historique des examens realisees a travers les rendezvous du patient
         List <Examen> historiqueExamens=new ArrayList<>();
-        List <RendezVous> rdvs=RdvDao.findAll();
+        List <RendezVous> rdvs=rdvDao.findAll();
         for(int i=0;i<rdvs.size();i++){
             RendezVous rdv=rdvs.get(i);
             if(rdv.getId_Patient().equals(id)){
@@ -95,8 +96,7 @@ public class PatientService implements CRUDService<Patient> {
         double totalFacture=0;
         double totalAssurence=0;
         List<FactureMedicale> factures=factureDao.findAll();
-        for(int i=0;i<factures.size();i++){
-            FactureMedicale f=factures.get(i);
+        for(FactureMedicale f : factures){
             if(f.getID_Patient().equals(id)){
                 totalFacture+=f.getMontantTTC();
                 totalAssurence+=f.getPartAssurance();
@@ -110,14 +110,11 @@ public class PatientService implements CRUDService<Patient> {
         List<Paiement> paiements=paiementDao.findAll();
         for(int i=0;i<paiements.size();i++){
             montantRegle+=paiements.get(i).getMontantRecu();
-            
-
         }
 
         //nombre de redez vous du patient 
-        List<RendezVous> rdv = RdvDao.findAll();
         int nbRdv=0;
-        for(RendezVous rdvp : rdv){
+        for(RendezVous rdvp : rdvs){
             if(rdvp.getId_Patient().equals(id))
                 nbRdv+=1;
         }
