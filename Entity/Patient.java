@@ -1,5 +1,6 @@
 package Entity;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ public class Patient {
     private String CIN_Matricule;
     private String nom;
     private String prenom;
-    private String dateNaissance;
+    private LocalDate dateNaissance;
     private String telephone ;
     private String Email;
     private int NumAssurance;
@@ -20,7 +21,7 @@ public class Patient {
         this.historiqueExamensIDs = new ArrayList<>();
     }
     // Parameterized constructor
-    public Patient(String CIN_Matricule, String nom, String prenom, String dateNaissance, String telephone, String Email, int NumAssurance, double SoldeCompte,String contreIndication,List<Examen> historiqueExamensIDs) {
+    public Patient(String CIN_Matricule, String nom, String prenom, LocalDate dateNaissance, String telephone, String Email, int NumAssurance, double SoldeCompte,String contreIndication,List<Examen> historiqueExamensIDs) {
         this.CIN_Matricule = CIN_Matricule;
         this.nom = nom;
         this.prenom = prenom;
@@ -52,10 +53,10 @@ public class Patient {
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
-    public String getDateNaissance() {
+    public LocalDate getDateNaissance() {
         return dateNaissance;
     }
-    public void setDateNaissance(String dateNaissance) {
+    public void setDateNaissance(LocalDate dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
     public String getTelephone() {

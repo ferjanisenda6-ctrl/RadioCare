@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "CIN_Matricule": "11482866",
+    "nom": "Ferjani",
+    "prenom": "Sinda",
+    "dateNaissance": "2006-06-06",
+    "telephone": "29321404",
+    "Email": "ferjanisenda6@gmail.com",
+    "NumAssurance": 101,
+    "SoldeCompte": 500.0,
+    "contreIndication": "aucune",
+    "historiqueExamensIDs": []
+  }
+]
