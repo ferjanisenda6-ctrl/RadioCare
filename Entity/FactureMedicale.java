@@ -27,10 +27,9 @@ public class FactureMedicale {
     }
 
     // Default constructor
-    public FactureMedicale(){
+    public FactureMedicale(){}
 
     // Getters and Setters
-    }
     public int getNumFacture() {
         return numFacture;
     }
