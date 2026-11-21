@@ -74,7 +74,7 @@ public class PatientService implements CRUDService<Patient> {
     //fonctionnalite complete F: Fiche complete du patient
     public FichePatient getficheComplete(String id) throws EntiteIntrouvableException{
         Patient patient=rechercher(id);
-        if(id==null){
+        if(patient ==null){
             throw new EntiteIntrouvableException("le patient est introuvable");
         
         }
@@ -123,7 +123,6 @@ public class PatientService implements CRUDService<Patient> {
         }
 
         //nombre de redez vous du patient 
-        
         int nbfacture=0;
         int totalPatient=0;
         List<FactureMedicale> facturesPatients = new ArrayList<>();
