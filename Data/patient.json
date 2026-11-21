@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "CIN_Matricule": "11482866",
+    "nom": "Ferjani",
+    "prenom": "Sinda",
+    "telephone": "29321404",
+    "NumAssurance": 0,
+    "SoldeCompte": 0.0,
+    "historiqueExamensIDs": []
+  }
+]
