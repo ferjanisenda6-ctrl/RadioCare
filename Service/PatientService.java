@@ -1,5 +1,5 @@
 package Service;
-import  Service.ExceptionsServices.ValidationException;
+
 import DAO.PatientDao;
 import DAO.RdvDao;
 import Entity.Examen;
@@ -8,16 +8,21 @@ import Entity.FichePatient;
 import Entity.Paiement;
 import Entity.Patient;
 import Entity.RendezVous;
+
 import Service.ExceptionsServices.ConflitException;
 import Service.ExceptionsServices.EntiteIntrouvableException;
+import  Service.ExceptionsServices.ValidationException;
+
+import DAO.PaiementDao;
+import DAO.ExamenDao;
+
 
 import DAO.FactureDao;
-import DAO.PaiementDao;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import DAO.ExamenDao;
+
 
 public class PatientService implements CRUDService<Patient> {
     private PatientDao patientDao=new PatientDao();
@@ -46,6 +51,8 @@ public class PatientService implements CRUDService<Patient> {
         patientDao.update(patient);
 
     }
+
+    
     @Override
     public void supprimer(String cin) throws EntiteIntrouvableException {
         boolean supprime=patientDao.delete(cin);
@@ -85,14 +92,14 @@ public class PatientService implements CRUDService<Patient> {
             }
         }
         //calcul du montant globale et part assurance 
-        double montantGlobal=0;
-        double partAssurance=0;
+        double totalFacture=0;
+        double totalAssurence=0;
         List<FactureMedicale> factures=factureDao.findAll();
         for(int i=0;i<factures.size();i++){
             FactureMedicale f=factures.get(i);
             if(f.getID_Patient().equals(id)){
-                montantGlobal+=f.getMontantTTC();
-                partAssurance+=f.getPartAssurance();
+                totalFacture+=f.getMontantTTC();
+                totalAssurence+=f.getPartAssurance();
                
                 
             }
@@ -102,23 +109,35 @@ public class PatientService implements CRUDService<Patient> {
         double montantRegle=0;
         List<Paiement> paiements=paiementDao.findAll();
         for(int i=0;i<paiements.size();i++){
-            Paiement p=paiements.get(i);
+            montantRegle+=paiements.get(i).getMontantRecu();
             
 
         }
 
-        return null;
+        //nombre de redez vous du patient 
+        List<RendezVous> rdv = RdvDao.findAll();
+        int nbRdv=0;
+        for(RendezVous rdvp : rdv){
+            if(rdvp.getId_Patient().equals(id))
+                nbRdv+=1;
+        }
 
+        //nombre de redez vous du patient 
+        
+        int nbfacture=0;
+        int totalPatient=0;
+        List<FactureMedicale> facturesPatients = new ArrayList<>();
+        for(FactureMedicale factureP : factures){
+            if(factureP.getID_Patient().equals(id)){
+                nbfacture+=1;
+                totalPatient+=factureP.getPartPatient();
+                facturesPatients.add(factureP);
+            }
+        }
 
-
-
-
+        return  new FichePatient(patient.getCIN_Matricule(),patient.getNom(),patient.getPrenom(),patient.getTelephone(),nbRdv,nbfacture,totalFacture,totalAssurence,totalPatient,totalPatient-montantRegle,facturesPatients,patient.getHistoriqueExamensIDs());
 
     }
-
-    
-  
-
-
+    //code terminé
 
 }
