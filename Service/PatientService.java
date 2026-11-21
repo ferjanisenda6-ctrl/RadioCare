@@ -10,7 +10,7 @@ import Entity.Patient;
 import Entity.RendezVous;
 import Service.ExceptionsServices.ConflitException;
 import Service.ExceptionsServices.EntiteIntrouvableException;
-import Service.ExceptionsServices.ValidationException;
+
 import DAO.FactureDao;
 import DAO.PaiementDao;
 
@@ -77,7 +77,7 @@ public class PatientService implements CRUDService<Patient> {
         for(int i=0;i<rdvs.size();i++){
             RendezVous rdv=rdvs.get(i);
             if(rdv.getId_Patient().equals(id)){
-                Examen ex=examenDao.rechercher(rdv.getID_Examen());
+                Examen ex=examenDao.findById(rdv.getID_Examen());
                 if(ex!=null){
                     historiqueExamens.add(ex);
                 }
@@ -106,6 +106,8 @@ public class PatientService implements CRUDService<Patient> {
             
 
         }
+
+        return null;
 
 
 
