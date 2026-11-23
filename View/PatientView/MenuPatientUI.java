@@ -24,6 +24,7 @@ public class MenuPatientUI {
             System.out.println("3. Lister les patients");
             System.out.println("4. Afficher la fiche complète");
             System.out.println("5. Supprimer un patient");
+            System.out.println("6. Modifier un patient");
             System.out.println("0. Quitter");
             System.out.print("Donner votre choix : ");
 
@@ -49,6 +50,10 @@ public class MenuPatientUI {
             }
             if(choix==5){
                 SupprimerPatientUI ui=new SupprimerPatientUI();
+                ui.afficher(controller, clavier);
+            }
+            if(choix==6){
+                ModifierPatientUI ui=new ModifierPatientUI();
                 ui.afficher(controller, clavier);
             }
             if(choix==0){

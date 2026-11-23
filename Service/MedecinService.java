@@ -37,7 +37,7 @@ public class MedecinService implements CRUDService<MedecinRadiologue>{
     }
 
     @Override
-    public void modifier(MedecinRadiologue medecin) throws EntiteIntrouvableException,ValidationException{
+    public void modifier(String id,MedecinRadiologue medecin) throws EntiteIntrouvableException,ValidationException{
         
         validerMedecin(medecin);// on va verifier la validité du medecin qui est en parametre
 

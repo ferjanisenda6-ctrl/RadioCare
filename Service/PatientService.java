@@ -44,7 +44,7 @@ public class PatientService implements CRUDService<Patient> {
         
     }
     @Override
-    public void modifier(Patient patient) throws EntiteIntrouvableException {
+    public void modifier(String CIN ,Patient patient) throws EntiteIntrouvableException {
         if(rechercher(patient.getCIN_Matricule())==null){
             throw new EntiteIntrouvableException("le patient de cin "+patient.getCIN_Matricule()+" est intouvable");
         }

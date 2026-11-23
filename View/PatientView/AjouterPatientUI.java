@@ -3,9 +3,13 @@ package View.PatientView;
 
 import Controller.PatientController;
 import Entity.Patient;
+import Service.ExceptionsServices.ConflitException;
+import Service.ExceptionsServices.ValidationException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AjouterPatientUI {
@@ -59,13 +63,18 @@ public class AjouterPatientUI {
         p.setSoldeCompte(solde);
         
         // On envoie le patient rempli au contrôleur
-        controller.ajouterPatient(p);
-        System.out.println("Patient ajouté avec succès !");
         try {
             controller.ajouterPatient(p);
             System.out.println("Patient ajouté avec succès !");
-        } catch (Exception e) {
+        } catch (DateTimeParseException e) {
+            System.out.println("Erreur : Format de date incorrect (utilisez JJ/MM/AAAA).");
+        } catch (InputMismatchException e) {
+            System.out.println("Erreur : Vous devez taper des chiffres pour l'assurance et le solde !");
+            clavier.nextLine(); 
+        } catch (ValidationException e) {
             System.out.println("Erreur : " + e.getMessage());
+        }catch (ConflitException e) {
+                System.out.println("Impossible d'ajouter : " + e.getMessage());
         }
     }
 }

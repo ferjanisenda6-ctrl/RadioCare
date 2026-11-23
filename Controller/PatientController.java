@@ -18,7 +18,7 @@ public class PatientController {
     }
 
     //l'ajout d'un patient
-    public void ajouterPatient (Patient nouveuPatient){
+    public void ajouterPatient (Patient nouveuPatient)throws ValidationException,ConflitException{
         try{
             patientService.ajouter(nouveuPatient);
             System.out.println("le nouveau patient a été enregistré dans le système avec succés ");
@@ -26,6 +26,17 @@ public class PatientController {
             System.out.println("il manque quelques informations :"+e.getMessage());
         }catch(ConflitException e){
             System.out.println(e.getMessage()+" : vérifier quelques informations .");
+        }
+    }
+
+    //Modifier patient 
+    public void modifierPatient(String cin, Patient nouvellesInfos) {
+        try {
+            // On suppose que votre PatientService possède une méthode modifier()
+            patientService.modifier(cin, nouvellesInfos); 
+            System.out.println("Les informations du patient ont été mises à jour !");
+        } catch (Exception e) {
+            System.out.println("Erreur lors de la modification : " + e.getMessage());
         }
     }
 
